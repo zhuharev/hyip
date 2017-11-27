@@ -2,6 +2,7 @@ package models
 
 import (
 	"encoding/json"
+	"os"
 
 	"github.com/zhuharev/boltutils"
 )
@@ -13,6 +14,13 @@ var (
 )
 
 func initBolt() (err error) {
+
+	// err =
+	os.Mkdir("data", 0777)
+	// if err != nil {
+	// 	return
+	// }
+
 	boltDB, err = boltutils.New(boltutils.OpenPath("data/kv.bolt"))
 	if err != nil {
 		return err
