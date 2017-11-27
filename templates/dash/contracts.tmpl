@@ -1,0 +1,31 @@
+<h2>Advcash</h2>
+<p>Переведите сумму инвестиции на наш e-mail: <code>kirill@zhuharev.ru</code></p>
+<a target="_blank" href="https://wallet.advcash.com/pages/transfer/wallet" class="btn btn-primary">Инвестировать $ через Advcash</a>
+
+
+<h2>Qiwi</h2>
+<p><b>Важно!</b> В комментарии к платежу должен стоять ваш ID: <code>{{ .User.ID }}</code></p>
+<a target="_blank" href="{{ .paymentURL }}" class="btn btn-primary">Инвестировать $ через Qiwi</a>
+
+
+<h2>Инвестиции</h2>
+<table class="table  table-striped table-bordered" style="width: 100%;">
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Срок действия</th>
+      <th>Сумма</th>
+      <th>Ставка</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ range .investments }}
+    <tr>
+      <td>{{ .Curr.ID }}</td>
+      <td>{{ (.CreatedAt.AddDate 1 0 0).Format "02.01.2006" }}</td>
+      <td>{{ .Curr.FormatAmount .Amount }}</td>
+      <td>{{ .Profit }}</td>
+    </tr>
+    {{ end }}
+  </tbody>
+</table>

@@ -1,0 +1,15 @@
+Get /about/:slug pages.Show
+Post /about/:slug pages.Update
+Get /             pages.Index
+
+Post /tools/calc   tools.Calc
+
+Get /dash   dash.Index
+Get /dash/partners dash.Partners
+Get /dash/transactions dash.Transactions
+Get /dash/settings  dash.Settings
+Post /dash/settings  dash.UpdateSettings
+
+
+Get /support         support.Index
+Post /support        support.CreateTicket

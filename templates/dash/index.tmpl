@@ -1,0 +1,10 @@
+Вы вошли как {{ .i18n.Tr .User.Role.String }}
+
+<h2>Баланс</h2>
+
+<ul class="list-group">
+  {{ range .accounts}}<li class="list-group-item">
+    <span class="badge">{{ $.currencies.FormatAmount .CurrencyID .Amount }}</span>
+    {{ $.i18n.Tr ($.currencies.Message .CurrencyID) }} <a class="btn btn-default" href="/payout/qiwi">Вывести через Qiwi</a>
+  </li>{{ end }}
+</ul>

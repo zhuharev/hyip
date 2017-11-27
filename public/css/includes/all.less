@@ -1,0 +1,295 @@
+// "main": "../style.less"
+
+body {
+  min-height: 100vh;
+  padding-top: 20px;
+  background: @white;
+  color: @black;
+  font-family: 'Avenir Next Cyr';
+  font-weight: 300;
+  font-style: normal;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h5 {
+  font-weight: 600;
+}
+
+a {
+  &:focus,
+  &:hover {
+    background: none;
+    text-decoration: none;
+  }
+
+  &:active,
+  &:hover {
+    text-decoration: underline !important;
+  }
+
+  &.btn1 {
+    padding: 3px 10px;
+    background-color: @gray;
+    font-weight: 500;
+    color: @black;
+    text-decoration: none !important;
+  }
+}
+
+.table-overflow {
+  overflow: auto !important;
+}
+
+.table-overflow-x {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+table {
+  margin-bottom: 45px;
+
+  thead {
+    th {
+      border: 0 !important;
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        border: 0 !important;
+        font-weight: 400;
+      }
+
+      &.spacer {
+        height: 10px;
+      }
+    }
+  }
+}
+
+.dfi {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 18px;
+
+  table {}
+
+  .btn-scroll {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    a {
+      display: inline-block;
+      width: 19px;
+      height: 11px;
+      background-image: url("/img/main/appear2.png");
+      background-repeat: no-repeat;
+      filter: opacity(50%);
+
+      &.scroll-top {
+        margin-top: 10px;
+        transform: rotate(180deg);
+      }
+
+      &.scroll-bottom {
+        margin-bottom: 15px;
+      }
+
+      &:hover {
+        filter: none;
+      }
+    }
+  }
+}
+
+.card {
+  position: relative;
+  height: 85%;
+  padding: 7px 10px 13px;
+  box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.35);
+
+  .pbottom {
+    position: absolute;
+    bottom: 10px;
+    left: 5px;
+    right: 5px;
+  }
+
+  &.bank-cart {
+    @darkgray: #ababab;
+    border-radius: 10px;
+
+    form {
+      .form-group {
+        label {
+          margin-top: 12px;
+          font-weight: 400;
+          color: @gray;
+        }
+
+        input {
+          padding: 6px;
+          border: 1px solid @darkgray;
+          border-radius: 1px;
+          color: @black;
+
+          &::placeholder {
+            color: @black;
+          }
+
+          &#validity-month,
+          &#validity-year {
+            width: 50px;
+            text-align: center;
+
+            &::placeholder {
+              text-align: center;
+            }
+          }
+
+          &#family,
+          &#name {
+            text-transform: uppercase;
+          }
+        }
+
+        .division {
+          display: inline-block;
+          margin: 0 10px;
+        }
+
+        .required {
+          color: #ff2626;
+        }
+
+        &.form-inline {
+          input[type="radio"] {
+            display: none;
+          }
+
+          input[type="radio"] + label {
+            width: auto;
+            cursor: pointer;
+          }
+
+          input[type="radio"] + label .indicator-select {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin: 0 0 0 30px;
+            vertical-align: bottom;
+            border: 1px solid @black;
+            border-radius: 50px;
+            cursor: pointer;
+          }
+
+          input[type="radio"]:checked + label .indicator-select {
+            background: url("/img/main/checked.png") center no-repeat;
+            background-size: 80%;
+          }
+
+          input[type="radio"]:checked + label > div {
+            filter: none;
+          }
+
+          label {
+            margin-right: 7px;
+
+            &:last-child {
+              margin-right: 0;
+            }
+
+            div {
+              width: 50px;
+              height: 50px;
+              background-repeat: no-repeat !important;
+              background-size: contain !important;
+              background-position: center !important;
+              filter: grayscale(1);
+            }
+
+            &.mastercard {
+              div {
+                background-image: url("/img/main/mastercard.png");
+              }
+            }
+
+            &.maestro {
+              div {
+                background-image: url("/img/main/maestro.png");
+              }
+            }
+
+            &.visa {
+              div {
+                background-image: url("/img/main/visa.png");
+              }
+            }
+
+            &.americane {
+              div {
+                background-image: url("/img/main/americane.png");
+              }
+            }
+
+            &.mir {
+              div {
+                background-image: url("/img/main/mir.png");
+              }
+            }
+          }
+        }
+      }
+
+      p {
+        margin-bottom: 0;
+        font-weight: 400;
+        color: @darkgray;
+      }
+    }
+    @media (max-width: @screen-md-max) {
+      form {
+        .form-group {
+          label {
+            margin-top: 0;
+          }
+
+          input {
+            width: 100%;
+            margin-bottom: 15px;
+
+            &#validity-month,
+            &#validity-year {
+              width: 50px;
+            }
+          }
+
+          .division {
+            vertical-align: super;
+          }
+        }
+      }
+    }
+    @media (max-width: @screen-sm-max) {
+      margin-top: 15px;
+
+      form {
+        .form-group {
+          input {
+            &#validity-month,
+            &#validity-year {
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+  }
+}

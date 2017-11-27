@@ -1,0 +1,95 @@
+// "main": "../style.less"
+
+header {
+  border-bottom: 7px solid @blue;
+
+  .bground {
+    background-image: url("/img/header/bground.png");
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 200px;
+  }
+
+  .navbar {
+    .navbar-header {
+      display: flex;
+      justify-content: center;
+      float: none;
+      margin: 20px 0;
+
+      .navbar-toggle {
+        position: absolute;
+        top: -5px;
+        left: 0;
+        margin: 0;
+        padding: 0;
+
+        .icon-bar {
+          background-color: @black;
+        }
+      }
+
+      .navbar-brand {
+        height: auto;
+        padding: 0;
+        text-align: center;
+
+        img {
+          display: inline-block;
+          user-select: none;
+        }
+      }
+    }
+
+    .navbar-nav {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      &::after,
+      &::before {
+        display: none;
+      }
+
+      li {
+        a {
+          padding: 0;
+          font-weight: 500;
+          color: @black;
+
+          &:focus,
+          &:hover {
+            background: none;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: @screen-sm-max) {
+    .navbar {
+      .navbar-nav {
+        li {
+          a {
+            text-align: center;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: @screen-xs-max) {
+    .navbar {
+      .navbar-nav {
+        flex-direction: column;
+
+        li {
+          margin-bottom: 10px;
+
+          a {
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+}

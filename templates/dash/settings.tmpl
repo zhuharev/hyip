@@ -1,0 +1,9 @@
+<h2>Настройки</h2>
+
+
+{{ if .User.IsAdmin }}
+{{ template "settings-admin" .}}
+{{ template "settings-user" .}}
+{{else}}
+{{ template "settings-user" .}}
+{{end}}

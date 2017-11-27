@@ -1,0 +1,6 @@
+{{ with .page }}
+<h1>{{ .Title }}</h1>
+{{ .Body }}
+{{ else }}
+<b>Страница ещё не создана!</b> {{ if .User.IsAdmin }} <a href="/about/{{ .slug }}/edit">Создать</a> {{ end }}
+{{ end }}

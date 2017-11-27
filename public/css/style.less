@@ -1,0 +1,89 @@
+// "out": "style.css", "compress": true, "strictMath": true
+/* ===== WINDOW SIZES ===== */
+@screen-xs-max: 767px;
+@screen-sm-min: 768px;
+@screen-sm-max: 991px;
+@screen-md-min: 992px;
+@screen-md-max: 1199px;
+@screen-lg-min: 1200px;
+/* ===== // WINDOW SIZES =====*/
+/* ===== SPACERS =====*/
+.spacer {
+  display: block;
+  height: 100px;
+  width: 100%;
+}
+.spacer25:extend(.spacer){
+  height: 25px;
+}
+.spacer50:extend(.spacer){
+  height: 50px;
+}
+.spacer100:extend(.spacer){
+  height: 100px;
+}
+/* ===== // SPACERS =====*/
+/* ===== FONT SIZES =====*/
+@media (max-width: @screen-md-min) {
+  // h1 {
+  //   font-size: 36px !important;
+  // }
+  //
+  // h2 {
+  //   font-size: 33px !important;
+  // }
+  //
+  // h3 {
+  //   font-size: 30px !important;
+  // }
+}
+@media (max-width: @screen-sm-min) {
+  // h1 {
+  //   font-size: 33px !important;
+  // }
+  //
+  // h2 {
+  //   font-size: 31px !important;
+  // }
+  //
+  // h3 {
+  //   font-size: 27px !important;
+  // }
+  //
+  // p {
+  //   font-size: px !important;
+  // }
+}
+@media (max-width: @screen-xs-max) {
+  // h1 {
+  //   font-size: 30px !important;
+  // }
+  //
+  // h2 {
+  //   font-size: 29px !important;
+  // }
+  //
+  // h3 {
+  //   font-size: 24px !important;
+  // }
+  //
+  // p {
+  //   font-size: 14px !important;
+  // }
+}
+/* ===== // FONT SIZES =====*/
+/* ===== COLORS =====*/
+@black: #000;
+@white: #fff;
+@gray: #a8a8a8;
+@lightgray: #eaeaea;
+@blue: #1e3e6f;
+/* ===== // COLORS =====*/
+/* ===== IMPORTS =====*/
+@import "includes/fonts.less";
+@import "includes/header.less";
+@import "includes/footer.less";
+@import "includes/aside.less";
+@import "includes/main.less";
+@import "includes/all.less";
+/* ===== // IMPORTS =====*/

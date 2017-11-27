@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>ZEUS</title>
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css?3">
+</head>
+
+<body id="top">
+  <header>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="bground col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+          <nav class="navbar">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="/">
+                  <img src="/img/header/logo.png" alt="ZEUS">
+                </a>
+              </div>
+
+              <div class="row">
+                <div class="collapse navbar-collapse" id="myNavbar">
+                  <ul class="nav navbar-nav">
+                    <li><a href="/about/description">ОПИСАНИЕ</a></li>
+                    <li><a href="/about/projects">ТЕХНОЛОГИИ И ПРОЕКТЫ</a></li>
+                    <li><a href="/about/advantages">ПРЕИМУЩЕСТВО</a></li>
+                    <li><a href="/about/telegram">TELEGRAM</a></li>
+                    <li><a href="/about/referral-system">РЕФ СИСТЕМА</a></li>
+                    <li><a href="/about/stats">СТАТИСТИКА</a></li>
+                    <li><a href="/about/faq">FAQ</a></li>
+                    <li><a href="/about/rules">ПРАВИЛА</a></li>
+                    <li><a href="/logout" class="abtn">ВЫЙТИ</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0">
+          <div class="row">
+            <div class="box-shadow col-sm-12 col-xs-12">
+              <div class="df row">
+                <div class="npl sidebar col-lg-2 col-md-3 col-sm-12">
+                  <aside>
+                    <div class="text-center">
+                      <div class="user-photo">
+                        <img src="/img/main/user-photo.png" alt="" class="img-rounded">
+                      </div>
+                    </div>
+
+                    <nav>
+                      <ul class="list-unstyled">
+                        <li {{ if eq .requestURI "/dash"}}class="active"{{ end }}><a href="/dash">ИНВЕСТОР Х</a></li>
+                        <li {{ if eq .requestURI "/dash/contracts"}}class="active"{{ end }}><a href="/dash/contracts">ПОРТФЕЛЬ</a></li>
+                        <li {{ if eq .requestURI "/dash/partners"}}class="active"{{ end }}><a href="/dash/partners">ПАРТНЕРСКАЯ</a></li>
+                        <li {{ if eq .requestURI "/dash/transactions"}}class="active"{{ end }}><a href="/dash/transactions">ТРАНЗАКЦИИ</a></li>
+                        <!--<li {{ if eq .requestURI "/dash"}}class="active"{{ end }}><a href="#">РЕКВИЗИТЫ</a></li>-->
+                        <li class="spacer25"></li>
+
+                        <li {{ if eq .requestURI "/support"}}class="active"{{ end }}><a href="/support">ПОДДЕРЖКА</a></li>
+                        <li {{ if eq .requestURI "/dash/settings"}}class="active"{{ end }}><a href="/dash/settings">НАСТРОЙКИ</a></li>
+                      </ul>
+                    </nav>
+                  </aside>
+                </div>
+
+                <div class="npr npl col-lg-10 col-md-9 col-sm-12">
+                  <section class="adm-panel">
+                    {{ with .Flash.ErrorMsg }}<div class="alert alert-danger" role="alert">{{ . }}</div>{{ end }}
+                    {{ with .Flash.SuccessMsg }}<div class="alert alert-success" role="alert">{{ . }}</div>{{ end }}
+                    {{ yield }}
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+          <div class="row">
+            <div class="col-sm-12 col-xs-12">
+              <nav>
+                <ul class="list-unstyled">
+                  <li><a href="#!">ОПИСАНИЕ</a></li>
+                  <li><a href="#!">ТЕХНОЛОГИИ И ПРОЕКТЫ</a></li>
+                  <li><a href="#!">ПРЕИМУЩЕСТВО</a></li>
+                  <li><a href="#!">TELEGRAM</a></li>
+                  <li><a href="#!">РЕФ СИСТЕМА</a></li>
+                  <li><a href="#!">СТАТИСТИКА</a></li>
+                  <li><a href="#!">FAQ</a></li>
+                  <li><a href="#!">ПРАВИЛ</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-xs-12">
+              <div class="bottom">
+                <a href="#!" class="logo">
+                  <img src="/img/header/logo.png" alt="ZEUS">
+                </a>
+
+                <a href="#top" class="up"></a>
+
+                <ul class="social list-unstyled">
+                  <li><a href="#!" target="_blank" class="vk"></a></li>
+                  <li><a href="#!" target="_blank" class="inst"></a></li>
+                  <li><a href="#!" target="_blank" class="fb"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- by Bellgance -->
+  </footer>
+
+  <script src="/js/jquery-3.2.1.min.js" charset="utf-8"></script>
+  <script src="/js/bootstrap.min.js" charset="utf-8"></script>
+  <script src="/js/modernizr-2.8.3.min.js" charset="utf-8"></script>
+  <script src="/js/scripts.js" charset="utf-8"></script>
+</body>
+
+</html>

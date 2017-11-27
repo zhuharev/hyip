@@ -1,0 +1,66 @@
+// "main": "../style.less"
+
+aside {
+  height: 100%;
+  padding-top: 20px;
+  background-color: @blue;
+
+  .user-photo {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 25px;
+    border-radius: 50%;
+
+    img {
+      height: 100%;
+      border: 3px solid @white;
+      border-radius: 50%;
+    }
+  }
+
+  nav {
+    ul {
+      margin-bottom: 0;
+      padding-left: 30px !important;
+
+      li {
+        margin-bottom: 9px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &.active {
+          position: relative;
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -18px;
+            width: 12px;
+            height: 17px;
+            background-image: url("/img/main/active.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+          }
+        }
+
+        a {
+          font-weight: 500;
+          color: @white;
+
+          &:active,
+          &:focus,
+          &:hover {
+            color: @white;
+            text-decoration: none !important;
+          }
+        }
+      }
+    }
+  }
+}
