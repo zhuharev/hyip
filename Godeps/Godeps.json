@@ -1,0 +1,187 @@
+{
+	"ImportPath": "github.com/zhuharev/hyip",
+	"GoVersion": "go1.9",
+	"GodepVersion": "v79",
+	"Deps": [
+		{
+			"ImportPath": "github.com/Unknwon/com",
+			"Comment": "v1-13-g7677a1d",
+			"Rev": "7677a1d7c1137cd3dd5ba7a076d0c898a1ef4520"
+		},
+		{
+			"ImportPath": "github.com/Unknwon/i18n",
+			"Rev": "8372b908b5876d26cfa46a85fc4851b981dad102"
+		},
+		{
+			"ImportPath": "github.com/boltdb/bolt",
+			"Comment": "v1.3.1-1-gfa5367d",
+			"Rev": "fa5367d20c994db73282594be0146ab221657943"
+		},
+		{
+			"ImportPath": "github.com/fatih/color",
+			"Comment": "v1.5.0-8-g5df930a",
+			"Rev": "5df930a27be2502f99b292b7cc09ebad4d0891f4"
+		},
+		{
+			"ImportPath": "github.com/go-macaron/binding",
+			"Rev": "ac54ee249c27dca7e76fad851a4a04b73bd1b183"
+		},
+		{
+			"ImportPath": "github.com/go-macaron/i18n",
+			"Rev": "ef57533c3b0fc2d8581deda14937e52f11a203ab"
+		},
+		{
+			"ImportPath": "github.com/go-macaron/inject",
+			"Rev": "d8a0b8677191f4380287cfebd08e462217bac7ad"
+		},
+		{
+			"ImportPath": "github.com/go-macaron/session",
+			"Rev": "b8e286a0dba8f4999042d6b258daf51b31d08938"
+		},
+		{
+			"ImportPath": "github.com/go-telegram-bot-api/telegram-bot-api",
+			"Comment": "v4.6.1",
+			"Rev": "2022d04b94f50056a09962b1ac81cdd821d20a55"
+		},
+		{
+			"ImportPath": "github.com/jinzhu/gorm",
+			"Comment": "v1.0-176-g0a51f6c",
+			"Rev": "0a51f6cdc55d1650d9ed3b4c13026cfa9133b01e"
+		},
+		{
+			"ImportPath": "github.com/jinzhu/gorm/dialects/sqlite",
+			"Comment": "v1.0-176-g0a51f6c",
+			"Rev": "0a51f6cdc55d1650d9ed3b4c13026cfa9133b01e"
+		},
+		{
+			"ImportPath": "github.com/jinzhu/inflection",
+			"Rev": "1c35d901db3da928c72a72d8458480cc9ade058f"
+		},
+		{
+			"ImportPath": "github.com/jinzhu/now",
+			"Rev": "d939ba741945c047cac69c329c5fb0d6b4a06520"
+		},
+		{
+			"ImportPath": "github.com/mailru/easyjson",
+			"Rev": "32fa128f234d041f196a9f3e0fea5ac9772c08e1"
+		},
+		{
+			"ImportPath": "github.com/mailru/easyjson/buffer",
+			"Rev": "32fa128f234d041f196a9f3e0fea5ac9772c08e1"
+		},
+		{
+			"ImportPath": "github.com/mailru/easyjson/jlexer",
+			"Rev": "32fa128f234d041f196a9f3e0fea5ac9772c08e1"
+		},
+		{
+			"ImportPath": "github.com/mailru/easyjson/jwriter",
+			"Rev": "32fa128f234d041f196a9f3e0fea5ac9772c08e1"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-colorable",
+			"Comment": "v0.0.9-6-gad5389d",
+			"Rev": "ad5389df28cdac544c99bd7b9161a0b5b6ca9d1b"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-isatty",
+			"Comment": "v0.0.3-1-ga5cdd64",
+			"Rev": "a5cdd64afdee435007ee3e9f6ed4684af949d568"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-sqlite3",
+			"Comment": "v1.3.0-2-g615c193",
+			"Rev": "615c193e01d8d462eef7ee390171506f531a1c9a"
+		},
+		{
+			"ImportPath": "github.com/pierrec/lz4",
+			"Comment": "v1.0.1",
+			"Rev": "08c27939df1bd95e881e2c2367a749964ad1fceb"
+		},
+		{
+			"ImportPath": "github.com/pierrec/xxHash/xxHash32",
+			"Comment": "v0.1-11-ga0006b1",
+			"Rev": "a0006b13c722f7f12368c00a3d3c2ae8a999a0c6"
+		},
+		{
+			"ImportPath": "github.com/pilu/go-base62",
+			"Rev": "d5f2747573ce21beebdd18dfafb88093713aa45e"
+		},
+		{
+			"ImportPath": "github.com/technoweenie/multipartstreamer",
+			"Comment": "v1.0.1",
+			"Rev": "a90a01d73ae432e2611d178c18367fbaa13e0154"
+		},
+		{
+			"ImportPath": "github.com/urfave/cli",
+			"Comment": "v1.20.0-28-g7bc6a0a",
+			"Rev": "7bc6a0acffa589f415f88aca16cc1de5ffd66f9c"
+		},
+		{
+			"ImportPath": "github.com/zhuharev/boltutils",
+			"Comment": "v0.0.2",
+			"Rev": "3acb389c51858297ab6853e03678f6c95f032a13"
+		},
+		{
+			"ImportPath": "github.com/zhuharev/guse/random",
+			"Rev": "cbaa3f339774fb4f4932f9652b20afed910b34ba"
+		},
+		{
+			"ImportPath": "github.com/zhuharev/qiwi",
+			"Comment": "v0.0.5-1-g8ae706e",
+			"Rev": "8ae706e14a322c18b3549b0aa6e9c7d91fd59565"
+		},
+		{
+			"ImportPath": "github.com/zhuharev/qiwi-admin/models",
+			"Comment": "v0.0.6-1-g85e0521",
+			"Rev": "85e05218fe212ce2aaba7b83fc315636a864f435"
+		},
+		{
+			"ImportPath": "github.com/zhuharev/qiwi-admin/pkg/setting",
+			"Comment": "v0.0.6-1-g85e0521",
+			"Rev": "85e05218fe212ce2aaba7b83fc315636a864f435"
+		},
+		{
+			"ImportPath": "github.com/zhuharev/tamework",
+			"Comment": "v0.0.1-1-gbca8824",
+			"Rev": "bca8824ee109ae2b0ab0514e84fd05eeaea7dbb1"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/bcrypt",
+			"Rev": "bd6f299fb381e4c3393d1c4b1f0b94f5e77650c8"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/blowfish",
+			"Rev": "bd6f299fb381e4c3393d1c4b1f0b94f5e77650c8"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/pbkdf2",
+			"Rev": "bd6f299fb381e4c3393d1c4b1f0b94f5e77650c8"
+		},
+		{
+			"ImportPath": "golang.org/x/net/context",
+			"Rev": "01c190206fbdffa42f334f4b2bf2220f50e64920"
+		},
+		{
+			"ImportPath": "golang.org/x/sys/unix",
+			"Rev": "95c6576299259db960f6c5b9b69ea52422860fce"
+		},
+		{
+			"ImportPath": "golang.org/x/text/internal/tag",
+			"Rev": "88f656faf3f37f690df1a32515b479415e1a6769"
+		},
+		{
+			"ImportPath": "golang.org/x/text/language",
+			"Rev": "88f656faf3f37f690df1a32515b479415e1a6769"
+		},
+		{
+			"ImportPath": "gopkg.in/ini.v1",
+			"Comment": "v1.30.3",
+			"Rev": "f280b3ba517bf5fc98922624f21fb0e7a92adaec"
+		},
+		{
+			"ImportPath": "gopkg.in/macaron.v1",
+			"Comment": "v1.2.3",
+			"Rev": "534b5803c7c0bfb3a59632359a94bc761d393d4c"
+		}
+	]
+}

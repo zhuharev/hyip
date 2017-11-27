@@ -1,0 +1,13 @@
+language: go
+
+go:
+ - 1.8
+
+install:
+ - go get github.com/boltdb/bolt
+ - go get github.com/axw/gocov/gocov
+ - go get github.com/mattn/goveralls
+
+script:
+ - go test -v -covermode=count -coverprofile=coverage.out
+ - $GOPATH/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
