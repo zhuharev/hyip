@@ -5,9 +5,9 @@
 package dash
 
 import (
-	"pure/api/socs/telegram/trinity/models"
-	"pure/api/socs/telegram/trinity/pkg/qiwi"
-	"pure/api/socs/telegram/trinity/web/context"
+	"github.com/zhuharev/hyip/models"
+	"github.com/zhuharev/hyip/pkg/qiwi"
+	"github.com/zhuharev/hyip/web/context"
 )
 
 // Contracts is dash.partners controller

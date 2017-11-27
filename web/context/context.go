@@ -5,7 +5,7 @@
 package context
 
 import (
-	"pure/api/socs/telegram/trinity/models"
+	"github.com/zhuharev/hyip/models"
 
 	"github.com/go-macaron/session"
 	macaron "gopkg.in/macaron.v1"

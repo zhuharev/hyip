@@ -5,14 +5,14 @@
 package cmd
 
 import (
-	"pure/api/socs/telegram/trinity/models"
-	"pure/api/socs/telegram/trinity/web/routers/auth"
-	"pure/api/socs/telegram/trinity/web/routers/dash"
-	"pure/api/socs/telegram/trinity/web/routers/pages"
-	"pure/api/socs/telegram/trinity/web/routers/plans"
-	"pure/api/socs/telegram/trinity/web/routers/support"
-	"pure/api/socs/telegram/trinity/web/routers/tools"
-	"pure/api/socs/telegram/trinity/web/routers/webhooks"
+	"github.com/zhuharev/hyip/models"
+	"github.com/zhuharev/hyip/web/routers/auth"
+	"github.com/zhuharev/hyip/web/routers/dash"
+	"github.com/zhuharev/hyip/web/routers/pages"
+	"github.com/zhuharev/hyip/web/routers/plans"
+	"github.com/zhuharev/hyip/web/routers/support"
+	"github.com/zhuharev/hyip/web/routers/tools"
+	"github.com/zhuharev/hyip/web/routers/webhooks"
 
 	"github.com/go-macaron/binding"
 

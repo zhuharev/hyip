@@ -2,9 +2,9 @@ package traider
 
 import (
 	"log"
-	"pure/api/socs/telegram/trinity/models"
-	"pure/api/socs/telegram/trinity/pkg/base"
-	"pure/api/socs/telegram/trinity/pkg/setting"
+	"github.com/zhuharev/hyip/models"
+	"github.com/zhuharev/hyip/pkg/base"
+	"github.com/zhuharev/hyip/pkg/setting"
 	"time"
 
 	"github.com/fatih/color"

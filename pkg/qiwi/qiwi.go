@@ -3,8 +3,8 @@ package qiwi
 import (
 	"fmt"
 	"net/url"
-	"pure/api/socs/telegram/trinity/models"
-	"pure/api/socs/telegram/trinity/pkg/setting"
+	"github.com/zhuharev/hyip/models"
+	"github.com/zhuharev/hyip/pkg/setting"
 	"strings"
 	"time"
 

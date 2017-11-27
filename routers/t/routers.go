@@ -3,9 +3,9 @@ package routers
 import (
 	"fmt"
 	"log"
-	"pure/api/socs/telegram/trinity/models"
-	"pure/api/socs/telegram/trinity/pkg/context"
-	"pure/api/socs/telegram/trinity/pkg/qiwi"
+	"github.com/zhuharev/hyip/models"
+	"github.com/zhuharev/hyip/pkg/context"
+	"github.com/zhuharev/hyip/pkg/qiwi"
 
 	"github.com/zhuharev/boltutils"
 )

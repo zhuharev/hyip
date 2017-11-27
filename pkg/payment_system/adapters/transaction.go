@@ -4,8 +4,8 @@
 
 package advcash
 
-import "pure/api/socs/telegram/trinity/pkg/payment_system/store"
-import "pure/api/socs/telegram/trinity/models"
+import "github.com/zhuharev/hyip/pkg/payment_system/store"
+import "github.com/zhuharev/hyip/models"
 
 // ConvertToTxn convert adv cash responsed txn to our txn
 func (a *Advcash) ConvertToTxn(at AdvTransaction) (txn store.Transaction) {

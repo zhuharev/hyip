@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"log"
 	"math"
-	"pure/api/socs/telegram/trinity/models"
-	"pure/api/socs/telegram/trinity/web/context"
+	"github.com/zhuharev/hyip/models"
+	"github.com/zhuharev/hyip/web/context"
 )
 
 // Create plan in database

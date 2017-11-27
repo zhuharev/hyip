@@ -3,7 +3,7 @@ package traider
 import (
 	"log"
 	"math"
-	"pure/api/socs/telegram/trinity/pkg/setting"
+	"github.com/zhuharev/hyip/pkg/setting"
 	"testing"
 )
 

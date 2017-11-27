@@ -6,9 +6,9 @@ package webhooks
 
 import (
 	"log"
-	"pure/api/socs/telegram/trinity/models"
-	"pure/api/socs/telegram/trinity/pkg/exchange"
-	"pure/api/socs/telegram/trinity/web/context"
+	"github.com/zhuharev/hyip/models"
+	"github.com/zhuharev/hyip/pkg/exchange"
+	"github.com/zhuharev/hyip/web/context"
 
 	"github.com/Unknwon/com"
 	"github.com/fatih/color"

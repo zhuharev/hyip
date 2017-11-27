@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"path/filepath"
-	"pure/api/socs/telegram/trinity/web/context"
+	"github.com/zhuharev/hyip/web/context"
 
 	"github.com/go-macaron/i18n"
 	"github.com/go-macaron/session"

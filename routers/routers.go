@@ -1,8 +1,8 @@
 package routers
 
 import (
-	"pure/api/socs/telegram/trinity/pkg/middleware"
-	"pure/api/socs/telegram/trinity/pkg/wait"
+	"github.com/zhuharev/hyip/pkg/middleware"
+	"github.com/zhuharev/hyip/pkg/wait"
 )
 
 func Recommend(c *middleware.Context) {

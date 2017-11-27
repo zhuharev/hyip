@@ -5,8 +5,8 @@
 package support
 
 import (
-	"pure/api/socs/telegram/trinity/models"
-	"pure/api/socs/telegram/trinity/web/context"
+	"github.com/zhuharev/hyip/models"
+	"github.com/zhuharev/hyip/web/context"
 )
 
 // CreateTicket is support.createticket controller

@@ -6,7 +6,7 @@ package advcash
 
 import (
 	"encoding/json"
-	"pure/api/socs/telegram/trinity/pkg/payment_system/store"
+	"github.com/zhuharev/hyip/pkg/payment_system/store"
 	"time"
 )
 

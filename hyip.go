@@ -2,7 +2,7 @@ package main
 
 import (
 	"os"
-	"pure/api/socs/telegram/trinity/cmd"
+	"github.com/zhuharev/hyip/cmd"
 	"time"
 
 	"github.com/fatih/color"

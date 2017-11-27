@@ -5,8 +5,8 @@
 package pages
 
 import (
-	"pure/api/socs/telegram/trinity/models"
-	"pure/api/socs/telegram/trinity/web/context"
+	"github.com/zhuharev/hyip/models"
+	"github.com/zhuharev/hyip/web/context"
 )
 
 // Update is pages.update controller

@@ -8,8 +8,8 @@ import (
 	"github.com/fatih/color"
 	"golang.org/x/crypto/bcrypt"
 
-	"pure/api/socs/telegram/trinity/models"
-	"pure/api/socs/telegram/trinity/web/context"
+	"github.com/zhuharev/hyip/models"
+	"github.com/zhuharev/hyip/web/context"
 )
 
 // Reg is dash.index controller

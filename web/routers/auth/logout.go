@@ -4,7 +4,7 @@
 
 package auth
 
-import "pure/api/socs/telegram/trinity/web/context"
+import "github.com/zhuharev/hyip/web/context"
 
 // Logout delete req cookies and session user_id
 func Logout(ctx *context.Context) {
