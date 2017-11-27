@@ -22,7 +22,7 @@ func DB() *gorm.DB {
 
 // NewContext open db
 func NewContext() (err error) {
-	db, err = gorm.Open("sqlite3", "/db.sqlite")
+	db, err = gorm.Open("sqlite3", "/storage/db.sqlite")
 	if err != nil {
 		return err
 	}

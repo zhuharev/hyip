@@ -3,7 +3,7 @@ package setting
 import ini "gopkg.in/ini.v1"
 
 var (
-	confFile = "/app.ini"
+	confFile = "/storage/app.ini"
 
 	// App app.ini will be mapped to this var
 	App struct {
