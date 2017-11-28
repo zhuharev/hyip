@@ -21,14 +21,17 @@ type Investment struct {
 	UserID uint
 
 	Amount uint
+
+	TxnID uint `gorm:"unique_index"`
 }
 
 // NewInvestment create investment in db
-func NewInvestment(planID, userID, amount uint) (*Investment, error) {
+func NewInvestment(planID, userID, amount, txnID uint) (*Investment, error) {
 	inv := &Investment{
 		PlanID: planID,
 		UserID: userID,
 		Amount: amount,
+		TxnID:  txnID,
 	}
 	err := inv.Create(db)
 	return inv, err

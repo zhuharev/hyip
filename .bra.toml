@@ -2,7 +2,7 @@
 init_cmds = [
 	["go", "install"],
 	["go", "build"],
-	["./trinity", "web", "-bot"]
+	["./hyip", "web", "-bot", "-dev"]
 ]									# Commands run in start
 watch_all = true					# Watch all sub-directories
 watch_dirs = ["conf","pkg","models","routers", "web", "cmd"]						# Directories to watch
@@ -15,7 +15,7 @@ graceful_kill = false				# Wait for exit and before directly kill
 cmds = [
 	["go", "install"],
 	["go", "build"],
-	["./trinity", "web", "-bot"]
+	["./hyip", "web", "-bot", "-dev"]
 ]									# Commands to run
 
 [sync]

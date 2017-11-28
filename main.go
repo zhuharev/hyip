@@ -2,8 +2,9 @@ package main
 
 import (
 	"os"
-	"github.com/zhuharev/hyip/cmd"
 	"time"
+
+	"github.com/zhuharev/hyip/cmd"
 
 	"github.com/fatih/color"
 	"github.com/urfave/cli"

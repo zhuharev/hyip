@@ -1,3 +1,7 @@
+// Copyright 2017 Kirill Zhuharev. All rights reserved.
+// Use of this source code is governed by a MIT-style
+// license that can be found in the LICENSE file.
+
 package models
 
 import (
@@ -68,7 +72,10 @@ func (u usersModel) Create(user *User) (err error) {
 		}
 	}
 
-	return err
+	var us = UserSetting{UserID: user.ID}
+	err = stormDB.Save(&us)
+
+	return
 }
 
 func (u usersModel) NeedsProfit(period time.Duration) (users []User, err error) {

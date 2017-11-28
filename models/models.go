@@ -1,3 +1,7 @@
+// Copyright 2017 Kirill Zhuharev. All rights reserved.
+// Use of this source code is governed by a MIT-style
+// license that can be found in the LICENSE file.
+
 package models
 
 import (
@@ -6,6 +10,9 @@ import (
 	"github.com/jinzhu/gorm"
 	// sqlite driver
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
+
+	"github.com/zhuharev/hyip/pkg/payment_system/store"
+	"github.com/zhuharev/hyip/pkg/setting"
 )
 
 var (
@@ -22,9 +29,16 @@ func DB() *gorm.DB {
 
 // NewContext open db
 func NewContext() (err error) {
-	db, err = gorm.Open("sqlite3", "/storage/db.sqlite")
-	if err != nil {
-		return err
+	if setting.Dev {
+		db, err = gorm.Open("sqlite3", "data/db.sqlite")
+		if err != nil {
+			return err
+		}
+	} else {
+		db, err = gorm.Open("sqlite3", "/storage/db.sqlite")
+		if err != nil {
+			return err
+		}
 	}
 
 	db.LogMode(true)
@@ -33,10 +47,15 @@ func NewContext() (err error) {
 	db.AutoMigrate(&User{}, &TelegramBind{}, &Page{},
 		&Plan{},
 		&Investment{},
-		&Account{})
+		&Account{},
+		store.Transaction{})
 
 	// key value
 	if err = initBolt(); err != nil {
+		return err
+	}
+
+	if err = newStormContext(); err != nil {
 		return err
 	}
 

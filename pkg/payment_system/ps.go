@@ -5,8 +5,12 @@
 package ps
 
 import (
-	"github.com/zhuharev/hyip/pkg/payment_system/store"
+	"log"
 	"time"
+
+	"github.com/asdine/storm"
+	"github.com/zhuharev/hyip/models"
+	"github.com/zhuharev/hyip/pkg/payment_system/store"
 
 	"github.com/fatih/color"
 )
@@ -19,7 +23,6 @@ type PaymentSystem interface {
 	FetchNewTransactions() ([]store.Transaction, error)
 	// used for webhook
 	//ConvertToTxn(interface{}) (store.Transactioner, error)
-	SetStore(store.Store)
 	store.Store
 	//SendMoney(walletID string, currencyCode string, amount uint) (store.Transactioner, error)
 }
@@ -35,11 +38,17 @@ func New() (ps *PaymentSystems, err error) {
 	return
 }
 
+// Add ps to internal slice
+func (pss *PaymentSystems) Add(ps PaymentSystem) {
+	pss.systems = append(pss.systems, ps)
+}
+
 // Run payment systems poller. It fetch new txn from PS api by given interval
 func (pss *PaymentSystems) Run() {
 	for {
 		for _, ps := range pss.systems {
 			if ps.PollEnabled() {
+				color.Cyan("[payment systems] fetch updates %v", ps)
 				transactins, err := ps.FetchNewTransactions()
 				if err != nil {
 					color.Red("Error fetching transactions: %s", err)
@@ -48,7 +57,7 @@ func (pss *PaymentSystems) Run() {
 				for _, txn := range transactins {
 					//if has, err := ps.HasTxn(txn.ExternalID); !has && err == nil {
 					color.Green("Create new txn, %s", txn.ExternalID)
-					err = ps.CreateTxn(txn)
+					err = ps.CreateTxn(&txn)
 					if err != nil {
 						color.Red("Error creating txn: %s", err)
 					}
@@ -58,6 +67,34 @@ func (pss *PaymentSystems) Run() {
 					// 		color.Red("Error checking txn is exists: %s", err)
 					// 	}
 					// }
+
+					us, err := models.UserSettings.GetByField("Advcash", txn.SenderWalletID)
+					if err != nil {
+						if err == storm.ErrNotFound {
+							color.Green("New transaction without sender! %d", txn.ID)
+							continue
+						}
+						log.Printf("[payment systems] error detecting sender: %s", err)
+						continue
+					}
+
+					user, err := models.Users.Get(us.UserID)
+					if err != nil {
+						log.Printf("[payment systems] error getting user by id: %s", err)
+						continue
+					}
+
+					plan, err := models.Plans.GetByAmount(txn.Amount, models.USD.ID)
+					if err != nil {
+						log.Printf("[payment systems] error getting plan for payment currency: %s", err)
+						continue
+					}
+
+					_, err = models.NewInvestment(plan.ID, user.ID, txn.Amount, txn.ID)
+					if err != nil {
+						log.Printf("[payment systems] error creating investment: %s", err)
+						continue
+					}
 				}
 
 			}

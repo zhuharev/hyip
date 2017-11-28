@@ -1,10 +1,30 @@
 {{ define "settings-user" }}
+
+
 <h2>Настройки инвестора</h2>
 <h3>Qiwi-кошелёк</h3>
-<form action="">
+<form action="/dash/settings/qiwi" method="post">
   <div class="form-group">
     <label for="qiwi_wallet">Номер qiwi-кошелька</label>
     <input class="form-control" type="text" name="qiwi_wallet" id="qiwi_wallet" placeholder="79000000000">
+  </div>
+  <button class="btn btn-primary">Сохранить</button>
+</form>
+
+<h3 id="advcash">Advcash-кошелёк</h3>
+<form action="/dash/settings/advcash" method="post">
+  <div class="form-group">
+    <label for="advcash_wallet">Номер advcash-кошелька (e-mail, привязанный к аккаунту)</label>
+    <input value="{{ .userSetting.Advcash }}" class="form-control" type="text" name="Advcash" id="advcash_wallet" placeholder="mail@mail.com">
+  </div>
+  <button class="btn btn-primary">Сохранить</button>
+</form>
+
+<h3 id="bitcoin">Bitcoin-кошелёк</h3>
+<form action="/dash/settings/bitcoin" method="post">
+  <div class="form-group">
+    <label for="bitcoin_wallet">Адрес bitcoin-кошелька</label>
+    <input class="form-control" type="text" name="bitcoin_wallet" id="bitcoin_wallet" placeholder="bitcoin address">
   </div>
   <button class="btn btn-primary">Сохранить</button>
 </form>

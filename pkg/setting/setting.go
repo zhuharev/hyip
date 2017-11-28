@@ -1,9 +1,16 @@
+// Copyright 2017 Kirill Zhuharev. All rights reserved.
+// Use of this source code is governed by a MIT-style
+// license that can be found in the LICENSE file.
+
 package setting
 
 import ini "gopkg.in/ini.v1"
 
 var (
-	confFile = "/storage/app.ini"
+	confFile = "conf/app.ini"
+
+	// Dev represent is dev mode running
+	Dev bool
 
 	// App app.ini will be mapped to this var
 	App struct {
@@ -18,6 +25,10 @@ var (
 		PaymentSystems struct {
 			QiwiTokens     []string
 			QiwiAdminToken string
+
+			AdvcashEmail       string
+			AdvcashAPIPassword string
+			AdvcashAPIName     string
 		}
 
 		Account struct {

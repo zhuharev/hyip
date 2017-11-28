@@ -46,8 +46,8 @@ func BankKB(lang string) *tamework.Keyboard {
 	t := i18n.Locale{Lang: lang}.Tr
 	return tamework.NewKeyboard(nil).AddCallbackButton(t(Deposit), Deposit).
 		AddCallbackButton(t(Withdraw), Withdraw).
-		AddCallbackButton("").
-		AddCallbackButton(t(Reinvest), Reinvest).
+		//AddCallbackButton("").
+		//AddCallbackButton(t(Reinvest), Reinvest).
 		//AddCallbackButton(t(HistoryOfTransactions), HistoryOfTransactions).
 		AddCallbackButton("").
 		//AddCallbackButton(t(WithdrawRequest), WithdrawRequest).

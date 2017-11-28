@@ -1,7 +1,10 @@
 package cmd
 
 import (
+	"log"
 	"path/filepath"
+
+	"github.com/zhuharev/hyip/pkg/bootstrap"
 	"github.com/zhuharev/hyip/web/context"
 
 	"github.com/go-macaron/i18n"
@@ -18,6 +21,9 @@ var (
 		Flags: []cli.Flag{
 			cli.BoolFlag{
 				Name: "bot",
+			},
+			cli.BoolFlag{
+				Name: "dev",
 			},
 		},
 	}
@@ -53,8 +59,14 @@ func newMacaron() *macaron.Macaron {
 }
 
 func runWeb(ctx *cli.Context) {
+
+	err := bootstrap.GlobalInit(ctx.Bool("dev"))
+	if err != nil {
+		log.Fatalln(err)
+	}
+
 	if ctx.Bool("bot") {
-		go RunBot()
+		go RunBot(ctx)
 	}
 	m := newMacaron()
 

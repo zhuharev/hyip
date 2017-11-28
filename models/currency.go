@@ -47,7 +47,7 @@ var (
 	// BTC is bitcoin currency
 	BTC = Currency{
 		Model:         gorm.Model{ID: 1},
-		Code:          "XBT",
+		Code:          "BTC",
 		Digits:        8,
 		MinimalAmount: 13000,
 		Message:       "bitcoin",
@@ -102,9 +102,23 @@ var (
 	Currencies = currencies{
 		BTC, USD,
 	}
+	allCurrencies = currencies{
+		BTC, RUB, USD,
+	}
 )
 
 // GetCurrency returns currency
 func GetCurrency(id uint) Currency {
 	return Currencies[int(id)-1]
+}
+
+// GetCurrencyByCode returns currency by ther code
+// second return value represent currency found or not
+func GetCurrencyByCode(code string) (Currency, bool) {
+	for _, curr := range allCurrencies {
+		if curr.Code == code {
+			return curr, true
+		}
+	}
+	return Currency{}, false
 }

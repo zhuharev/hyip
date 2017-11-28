@@ -8,11 +8,10 @@ import (
 
 	"github.com/zhuharev/hyip/models"
 	"github.com/zhuharev/hyip/pkg/base"
+	"github.com/zhuharev/hyip/pkg/bootstrap"
 	"github.com/zhuharev/hyip/pkg/buttons"
 	"github.com/zhuharev/hyip/pkg/context"
-	"github.com/zhuharev/hyip/pkg/qiwi"
 	"github.com/zhuharev/hyip/pkg/setting"
-	"github.com/zhuharev/hyip/pkg/traider"
 	routers "github.com/zhuharev/hyip/routers/t"
 
 	"github.com/Unknwon/com"
@@ -34,6 +33,7 @@ var (
 )
 
 var (
+	// CmdBot cli tool
 	CmdBot = cli.Command{
 		Name:   "bot",
 		Action: runBot,
@@ -41,10 +41,17 @@ var (
 )
 
 func runBot(ctx *cli.Context) {
-	RunBot()
+
+	err := bootstrap.GlobalInit(ctx.Bool("dev"))
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	RunBot(ctx)
 }
 
-func RunBot() {
+// RunBot inits db connections, load settings and starts bot
+func RunBot(ctx *cli.Context) {
 
 	// err := i18n.SetMessage("ru-RU", "conf/locals/locale_ru-RU.ini")
 	// if err != nil {
@@ -55,28 +62,6 @@ func RunBot() {
 	// 	panic(err)
 	// }
 	// i18n.SetDefaultLang("ru-RU")
-
-	var err error
-
-	err = setting.NewContext()
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	err = models.NewContext()
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	err = qiwi.NewContext()
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	err = traider.NewContext()
-	if err != nil {
-		log.Fatalln(err)
-	}
 
 	log.Println("Setting loaded")
 	log.Println(setting.App)
@@ -114,8 +99,8 @@ func RunBot() {
 	tw.Text(buttons.MyBank, handleBank)
 	tw.CallbackQuery(buttons.Deposit, handleRefill)
 	tw.CallbackQuery("deposit_btc", handleBitcoinChoose)
-	tw.CallbackQuery(buttons.Reinvest, handleReinvest)
-	tw.CallbackQuery("reinvest_submit", handleReinvestSubmit)
+	//tw.CallbackQuery(buttons.Reinvest, handleReinvest)
+	//tw.CallbackQuery("reinvest_submit", handleReinvestSubmit)
 	tw.CallbackQuery(buttons.HistoryOfTransactions, handleOutgoingTransactionHistory)
 	tw.CallbackQuery(buttons.WithdrawRequest, handleTransactionHistory)
 	tw.CallbackQuery(buttons.Calc, handleCalc)
@@ -287,7 +272,7 @@ func handleTransactionHistory(c *context.Context) {
 
 func handleRef(c *context.Context) {
 	id := c.User.Ref1
-	text := ""
+	var text string
 	if id == 0 {
 		text = c.Tr("you_dont_have_referrer")
 	} else {

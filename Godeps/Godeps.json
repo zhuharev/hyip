@@ -13,6 +13,36 @@
 			"Rev": "8372b908b5876d26cfa46a85fc4851b981dad102"
 		},
 		{
+			"ImportPath": "github.com/asdine/storm",
+			"Comment": "v1.1.0-4-gf0fe866",
+			"Rev": "f0fe86698eccd584ac3f3a9e42ede6ff84b9148f"
+		},
+		{
+			"ImportPath": "github.com/asdine/storm/codec",
+			"Comment": "v1.1.0-4-gf0fe866",
+			"Rev": "f0fe86698eccd584ac3f3a9e42ede6ff84b9148f"
+		},
+		{
+			"ImportPath": "github.com/asdine/storm/codec/json",
+			"Comment": "v1.1.0-4-gf0fe866",
+			"Rev": "f0fe86698eccd584ac3f3a9e42ede6ff84b9148f"
+		},
+		{
+			"ImportPath": "github.com/asdine/storm/index",
+			"Comment": "v1.1.0-4-gf0fe866",
+			"Rev": "f0fe86698eccd584ac3f3a9e42ede6ff84b9148f"
+		},
+		{
+			"ImportPath": "github.com/asdine/storm/internal",
+			"Comment": "v1.1.0-4-gf0fe866",
+			"Rev": "f0fe86698eccd584ac3f3a9e42ede6ff84b9148f"
+		},
+		{
+			"ImportPath": "github.com/asdine/storm/q",
+			"Comment": "v1.1.0-4-gf0fe866",
+			"Rev": "f0fe86698eccd584ac3f3a9e42ede6ff84b9148f"
+		},
+		{
 			"ImportPath": "github.com/boltdb/bolt",
 			"Comment": "v1.3.1-1-gfa5367d",
 			"Rev": "fa5367d20c994db73282594be0146ab221657943"
@@ -37,6 +67,11 @@
 		{
 			"ImportPath": "github.com/go-macaron/session",
 			"Rev": "b8e286a0dba8f4999042d6b258daf51b31d08938"
+		},
+		{
+			"ImportPath": "github.com/go-resty/resty",
+			"Comment": "v1.0-4-g13d77a7",
+			"Rev": "13d77a7f95fd8d1bad97c56bf1b8562633c2f01a"
 		},
 		{
 			"ImportPath": "github.com/go-telegram-bot-api/telegram-bot-api",
@@ -159,6 +194,10 @@
 		},
 		{
 			"ImportPath": "golang.org/x/net/context",
+			"Rev": "01c190206fbdffa42f334f4b2bf2220f50e64920"
+		},
+		{
+			"ImportPath": "golang.org/x/net/publicsuffix",
 			"Rev": "01c190206fbdffa42f334f4b2bf2220f50e64920"
 		},
 		{

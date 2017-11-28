@@ -5,6 +5,7 @@
 package context
 
 import (
+	"github.com/fatih/color"
 	"github.com/zhuharev/hyip/models"
 
 	"github.com/go-macaron/session"
@@ -71,6 +72,7 @@ func (ctx *Context) HasError(err error, redirects ...string) bool {
 		location = redirects[0]
 	}
 	if err != nil {
+		color.Red("controller error %s", err)
 		ctx.Flash.Error(err.Error())
 		if ctx.User != nil {
 			ctx.Redirect(location)

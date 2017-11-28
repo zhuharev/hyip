@@ -19,6 +19,26 @@ func Settings(ctx *context.Context) {
 		ctx.Data["plans"] = plans
 	}
 
+	setting, err := models.UserSettings.Get(ctx.User.ID)
+	if ctx.HasError(err) {
+		return
+	}
+
+	ctx.Data["userSetting"] = setting
 	ctx.Data["currencies"] = models.Currencies
 	ctx.HTML(200, "dash/settings")
+}
+
+// MakeSaveField returns handler func
+func MakeSaveField(fieldName string) func(ctx *context.Context) {
+	return func(ctx *context.Context) {
+		var (
+			value = ctx.Query(fieldName)
+		)
+		if ctx.HasError(models.UserSettings.SetField(ctx.User.ID, fieldName, value)) {
+			return
+		}
+		ctx.Flash.Success("Настройки сохранены")
+		ctx.Redirect("/dash/settings")
+	}
 }

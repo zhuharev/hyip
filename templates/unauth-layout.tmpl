@@ -10,6 +10,7 @@
 
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/overwrite.css">
 </head>
 
 <body id="top">
@@ -61,8 +62,10 @@
             <div class="box-shadow col-sm-12 col-xs-12">
               <div class="df row">
                 <div class="npr npl col-lg-10 col-md-9 col-sm-12">
+                  <section class="uk-margin">
                   {{ with .Flash.ErrorMsg }}<div class="alert alert-danger" role="alert">{{ . }}</div>{{ end }}
                   {{ yield }}
+                  </section>
                 </div>
               </div>
             </div>

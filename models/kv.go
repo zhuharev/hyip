@@ -1,10 +1,14 @@
+// Copyright 2017 Kirill Zhuharev. All rights reserved.
+// Use of this source code is governed by a MIT-style
+// license that can be found in the LICENSE file.
+
 package models
 
 import (
 	"encoding/json"
-	"os"
 
 	"github.com/zhuharev/boltutils"
+	"github.com/zhuharev/hyip/pkg/setting"
 )
 
 var (
@@ -15,15 +19,16 @@ var (
 
 func initBolt() (err error) {
 
-	// err =
-	os.Mkdir("data", 0777)
-	// if err != nil {
-	// 	return
-	// }
-
-	boltDB, err = boltutils.New(boltutils.OpenPath("data/kv.bolt"))
-	if err != nil {
-		return err
+	if setting.Dev {
+		boltDB, err = boltutils.New(boltutils.OpenPath("data/kv.bolt"))
+		if err != nil {
+			return err
+		}
+	} else {
+		boltDB, err = boltutils.New(boltutils.OpenPath("/storage/kv.bolt"))
+		if err != nil {
+			return err
+		}
 	}
 
 	err = boltDB.CreateBucket(kvBucketName)

@@ -2,19 +2,27 @@
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
+//go:generate goqueryset -in store.go
+
 package store
 
-import "time"
+import (
+	"time"
+
+	"github.com/jinzhu/gorm"
+)
 
 // Transaction unified interface of txn
+// gen:qs
 type Transaction struct {
-	ID                uint //sql
-	ExternalID        string
-	CreatedAt         time.Time
+	gorm.Model //sql
+
+	ExternalID        string `gorm:"unique_index:idx_uniq_global"`
+	StartedAt         time.Time
 	Amount            uint
 	CurrencyCode      string
-	PaymentSystemName string
-	Incoming          bool
+	PaymentSystemName string `gorm:"unique_index:idx_uniq_global"`
+	Incoming          bool   `gorm:"unique_index:idx_uniq_global"`
 	SenderWalletID    string
 	RecieverWalletID  string
 	Status            string
@@ -22,7 +30,7 @@ type Transaction struct {
 
 // Store db interface
 type Store interface {
-	CreateTxn(Transaction) error
+	CreateTxn(*Transaction) error
 	//HasTxn(string) (bool, error)
 	SaveState([]byte) error
 	LoadState() ([]byte, error)

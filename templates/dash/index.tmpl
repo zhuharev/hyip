@@ -5,6 +5,30 @@
 <ul class="list-group">
   {{ range .accounts}}<li class="list-group-item">
     <span class="badge">{{ $.currencies.FormatAmount .CurrencyID .Amount }}</span>
-    {{ $.i18n.Tr ($.currencies.Message .CurrencyID) }} <a class="btn btn-default" href="/payout/qiwi">Вывести через Qiwi</a>
+    {{ $.i18n.Tr ($.currencies.Message .CurrencyID) }}
   </li>{{ end }}
 </ul>
+
+<h2>Вывод</h2>
+<form action="/dash/payout" method="post" class="form">
+  <div class="form-group">
+    <label for="account">Счёт</label>
+    <select class="form-control" name="account" id="account">
+      <option value="qiwi">Доллары</option>
+      <option value="advcash">Bitcoin</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="sum">Сумма</label>
+    <input class="form-control" type="text" name="sum" id="sum" placeholder="0.01">
+  </div>
+  <div class="form-group">
+    <label for="ps">Платёжная система</label>
+    <select class="form-control" name="ps" id="ps">
+      <option value="qiwi">Qiwi</option>
+      <option value="advcash">Advcash</option>
+      <option value="coinbase">Bitcoin</option>
+    </select>
+  </div>
+  <button class="btn btn-primary">Вывести</button>
+</form>
