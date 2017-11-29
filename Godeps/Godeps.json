@@ -48,6 +48,11 @@
 			"Rev": "fa5367d20c994db73282594be0146ab221657943"
 		},
 		{
+			"ImportPath": "github.com/fadion/gofixerio",
+			"Comment": "1.0-1-ge14ccf9",
+			"Rev": "e14ccf93216955ad67b40b702ba2944922eb73a7"
+		},
+		{
 			"ImportPath": "github.com/fatih/color",
 			"Comment": "v1.5.0-8-g5df930a",
 			"Rev": "5df930a27be2502f99b292b7cc09ebad4d0891f4"
