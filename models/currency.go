@@ -109,7 +109,12 @@ var (
 
 // GetCurrency returns currency
 func GetCurrency(id uint) Currency {
-	return Currencies[int(id)-1]
+	for _, curr := range allCurrencies {
+		if curr.ID == id {
+			return curr
+		}
+	}
+	return Currency{}
 }
 
 // GetCurrencyByCode returns currency by ther code

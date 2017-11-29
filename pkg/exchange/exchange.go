@@ -5,7 +5,6 @@
 package exchange
 
 import (
-	"fmt"
 	"math"
 
 	"github.com/zhuharev/hyip/models"
@@ -13,15 +12,38 @@ import (
 
 // ConvertAmount from currency code to currency code
 func ConvertAmount(from, to string, amount float64) (result float64, err error) {
-	// TODO:
-	return 0, fmt.Errorf("not implemented")
+	if from == to {
+		return amount, nil
+	}
+
+	var (
+		curr map[string]float64
+		ok   bool
+	)
+
+	cacheMu.RLock()
+	curr, ok = cache[from]
+	cacheMu.RUnlock()
+	if !ok {
+		curr, err = getchCurr(from)
+		if err != nil {
+			return 0, err
+		}
+	}
+
+	//color.Cyan("Convert from %s to %s %f * %f = %f ", from, to, amount, cache[from][to], cache[from][to]*amount)
+
+	return curr[to] * amount, nil
 }
 
+// TypeConverter converts uint amount to float and back
 type TypeConverter struct {
 }
 
+// DefaultTypeConverter initialized type TypeConverter
 var DefaultTypeConverter = &TypeConverter{}
 
+// NewTypeConverter returns emty type converter
 func NewTypeConverter() *TypeConverter {
 	return &TypeConverter{}
 }

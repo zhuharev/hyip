@@ -24,8 +24,8 @@ func (p plansModel) CreatePlan(plan *Plan) (err error) {
 func (p plansModel) GetByAmount(amount uint, currency uint) (plan *Plan, err error) {
 	plan = new(Plan)
 	err = NewPlanQuerySet(db).
-		MinInvestmentAmountGte(amount).
-		OrderAscByMinInvestmentAmount().
+		MinInvestmentAmountLte(amount).
+		OrderDescByMinInvestmentAmount().
 		CurrencyEq(currency).
 		One(plan)
 	return

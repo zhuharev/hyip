@@ -17,6 +17,10 @@ func (a *Advcash) ConvertToTxn(at AdvTransaction) (txn store.Transaction) {
 	txn.RecieverWalletID = at.ReceiverEmail
 	txn.SenderWalletID = at.SenderEmail
 
-	txn.Amount = a.ConvertToUint(models.USD.Code, at.AmountInUSD)
+	if at.AmountInUSD != 0 {
+		txn.Amount = a.ConvertToUint(models.USD.Code, at.AmountInUSD)
+	} else {
+		txn.Amount = a.ConvertToUint(models.USD.Code, at.Amount)
+	}
 	return
 }

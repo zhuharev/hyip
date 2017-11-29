@@ -121,6 +121,8 @@ func (a Advcash) hist(lastFetchTime time.Time) (_ []AdvTransaction, err error) {
 		return
 	}
 
+	//log.Printf("%s", bts)
+
 	link := "https://wallet.advcash.com/wsm/merchantWebService?wsdl"
 
 	client := resty.New()
@@ -136,6 +138,8 @@ func (a Advcash) hist(lastFetchTime time.Time) (_ []AdvTransaction, err error) {
 	}
 
 	bts = resp.Body()
+
+	//log.Printf("%s", bts)
 
 	var res HistoryResponse
 

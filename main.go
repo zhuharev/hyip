@@ -20,7 +20,9 @@ func main() {
 		t, _ := time.Parse("02.01.2006", date)
 		if time.Since(t) > 0 {
 			color.Red("%s", time.Since(t))
-			time.Sleep(1 * time.Hour)
+			for {
+				time.Sleep(1 * time.Hour)
+			}
 		}
 		go func() {
 			for {

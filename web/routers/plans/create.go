@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"log"
 	"math"
+
 	"github.com/zhuharev/hyip/models"
 	"github.com/zhuharev/hyip/web/context"
 )
@@ -20,7 +21,7 @@ func Create(ctx *context.Context) {
 		profit        = ctx.QueryFloat64("profit")
 	)
 
-	curr := models.Currencies[currencyID-1]
+	curr := models.GetCurrency(uint(currencyID))
 	log.Println(curr)
 	amount := int(math.Pow10(int(curr.Digits)) * minimalAmount)
 

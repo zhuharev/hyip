@@ -48,6 +48,7 @@ type InvestmentView struct {
 	Curr Currency `gorm:"-"`
 }
 
+// GetInvestments retuns user investments
 func GetInvestments(userID uint) (res []InvestmentView, err error) {
 	sql := `select plans.id as plan_id, plans.currency, investments.amount, investments.created_at,
 	 users.id as user_id, plans.profit from plans, investments, users where plans.id = investments.plan_id and users.id = investments.user_id and users.id = ?`
@@ -57,7 +58,7 @@ func GetInvestments(userID uint) (res []InvestmentView, err error) {
 	}
 
 	for i, plan := range res {
-		res[i].Curr = Currencies[plan.Currency-1]
+		res[i].Curr = GetCurrency(plan.Currency)
 	}
 
 	return
