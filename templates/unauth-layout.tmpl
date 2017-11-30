@@ -64,6 +64,7 @@
                 <div class="npr npl col-lg-10 col-md-9 col-sm-12">
                   <section class="uk-margin">
                   {{ with .Flash.ErrorMsg }}<div class="alert alert-danger" role="alert">{{ . }}</div>{{ end }}
+                  {{ with .Flash.SuccessMsg }}<div class="alert alert-success" role="alert">{{ . }}</div>{{ end }}
                   {{ yield }}
                   </section>
                 </div>

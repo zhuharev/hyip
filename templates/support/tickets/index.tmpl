@@ -1,0 +1,17 @@
+<h1>{{ .ticket.Title }}</h1>
+<h3>Переписка</h3>
+{{ range .messages }}
+<div class="uk-margin">
+  <p>{{ if eq $.User.ID .OwnerID }}{{ .Body }}{{else}}<b>{{ .Body }}</b>{{end}}</p>
+</div>
+{{ end }}
+
+<h4>Новое сообщение</h4>
+<form action="/support/messages/send" method="post">
+  <input type="hidden" name="ticket_id" value="{{ .ticket.ID }}">
+  <div class="form-group">
+    <textarea class="form-control" name="body" rows="2" cols="80"></textarea>
+
+  </div>
+  <button class="btn btn-primary">Отправить</button>
+</form>

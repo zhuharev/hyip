@@ -11,6 +11,13 @@ import (
 
 // Index is support.index controller
 func Index(ctx *context.Context) {
-	_ = models.User{}
-	ctx.HTML(200, "")
+	if ctx.Autorized() {
+		tickets, err := models.Tickets.List(ctx.User.ID)
+		if ctx.HasError(err) {
+			return
+		}
+		ctx.Data["tickets"] = tickets
+	}
+
+	ctx.HTML(200, "support/index")
 }

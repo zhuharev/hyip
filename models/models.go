@@ -48,7 +48,10 @@ func NewContext() (err error) {
 		&Plan{},
 		&Investment{},
 		&Account{},
-		store.Transaction{})
+		&store.Transaction{},
+		&Ticket{},
+		&Message{},
+	)
 
 	// key value
 	if err = initBolt(); err != nil {

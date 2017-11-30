@@ -1,0 +1,28 @@
+Вы можете задать здесь свои вопросы.
+
+<form action="/support/tickets/create" method="post" class="form">
+  <div class="margin">
+    <div class="form-group">
+      <label for="title">Заголовок</label>
+      <input type="text" name="title" id="title" class="form-control" placeholder="Заголовок">
+    </div>
+    <div class="form-group">
+      <label for="body">Текст</label>
+      <textarea class="form-control" name="body" rows="8" cols="80" placeholder="Опишите подробности проблемы"></textarea>
+    </div>
+    {{ with .User }}{{else}}<div class="form-group">
+      <label for="email">Email для ответа</label>
+      <input type="text" name="email" id="email" class="form-control" placeholder="Мы направим ответ на ваш email">
+    </div>{{ end }}
+  </div>
+  <button class="btn btn-primary">Задать вопрос</button>
+</form>
+
+{{ with .tickets }}
+{{ range .}}
+<h3><a href="/support/tickets/{{.ID}}">{{ .Title }}</a></h3>
+{{ end }}
+{{else}}{{with .User}}
+<h2>Вы пока не задали ни одного вопроса</h2>
+<p class="text-muted">Здесь будут ваши вопросы</p>
+{{end}}{{end}}

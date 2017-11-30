@@ -11,6 +11,22 @@ import (
 
 // CreateTicket is support.createticket controller
 func CreateTicket(ctx *context.Context) {
-	_ = models.User{}
-	ctx.HTML(200, "support/createticket")
+	var (
+		body     = ctx.Query("body")
+		title    = ctx.Query("title")
+		email    = ctx.Query("email")
+		ownerIDs []uint
+	)
+
+	if ctx.Autorized() {
+		ownerIDs = append(ownerIDs, ctx.User.ID)
+	}
+
+	_, err := models.Tickets.Create(title, body, email, ownerIDs...)
+	if ctx.HasError(err) {
+		return
+	}
+
+	ctx.Flash.Success("Тикет успешно создан!")
+	ctx.Redirect("/support")
 }
