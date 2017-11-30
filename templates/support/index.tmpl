@@ -1,3 +1,9 @@
+{{ with .User }}
+{{ if .IsSupport }}
+<a href="/support/admin" class="btn btn-primary pull-right">Интерфейс администратора</a>
+{{end}}
+{{end}}
+
 Вы можете задать здесь свои вопросы.
 
 <form action="/support/tickets/create" method="post" class="form">

@@ -62,7 +62,14 @@ func (ctx *Context) HTML(code int, tmplName string, other ...interface{}) {
 	if !ctx.Autorized() {
 		layoutName = "unauth-layout"
 	}
-	ctx.Context.HTML(code, tmplName, ctx.Data, macaron.HTMLOptions{Layout: layoutName})
+
+	htmlOpts := macaron.HTMLOptions{Layout: layoutName}
+
+	if len(other) == 2 {
+		htmlOpts = other[1].(macaron.HTMLOptions)
+	}
+
+	ctx.Context.HTML(code, tmplName, ctx.Data, htmlOpts)
 }
 
 // HasError check passed err and write resposne if err!=nil

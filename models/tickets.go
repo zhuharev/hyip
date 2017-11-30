@@ -13,6 +13,7 @@ func (t ticketModel) Create(title string, body string, email string, ownerIDs ..
 	tic = new(Ticket)
 	tic.Title = title
 	tic.Email = email
+	tic.Status = TicketOpened
 	if len(ownerIDs) > 0 {
 		tic.OwnerID = ownerIDs[0]
 	}
@@ -21,7 +22,7 @@ func (t ticketModel) Create(title string, body string, email string, ownerIDs ..
 		return
 	}
 
-	_, err = Messages.Create(tic.ID, body)
+	_, err = Messages.Create(tic.ID, body, ownerIDs...)
 
 	return
 }
@@ -34,6 +35,16 @@ func (ticketModel) Get(ticketID uint) (*Ticket, error) {
 
 func (ticketModel) List(userID uint) (res []Ticket, err error) {
 	err = NewTicketQuerySet(db).OwnerIDEq(userID).OrderDescByID().All(&res)
+	return
+}
+
+func (ticketModel) AdminList(startIDs ...uint) (res []Ticket, err error) {
+	qs := NewTicketQuerySet(db).OrderDescByID()
+	qs = qs.StatusEq(TicketOpened) // TODO: change this to bit operation
+	if len(startIDs) > 0 {
+		qs = qs.IDLt(startIDs[0])
+	}
+	err = qs.All(&res)
 	return
 }
 

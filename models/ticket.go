@@ -8,11 +8,16 @@ package models
 
 import "github.com/jinzhu/gorm"
 
+// TicketStatus shows ticket status
 type TicketStatus int
 
 const (
-	TicketOpen TicketStatus = 1 << (iota + 1)
+	// TicketOpened not solved quest
+	TicketOpened TicketStatus = 1 << (iota + 1)
+	// TicketClosed solved problem
 	TicketClosed
+	// TicketAnswered answered ticket. Used form hide from support answered
+	// questions
 	TicketAnswered
 )
 
@@ -31,6 +36,11 @@ type Ticket struct {
 // IsAnonymous returns true ticket not have owner
 func (t Ticket) IsAnonymous() bool {
 	return t.OwnerID == 0
+}
+
+// Answered return answered ticket or not
+func (t Ticket) Answered() bool {
+	return t.Status&TicketAnswered != 0
 }
 
 // Message used for support chat

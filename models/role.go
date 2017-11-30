@@ -18,6 +18,8 @@ const (
 	RoleManager
 	// RoleAdmin admin user
 	RoleAdmin
+	// RoleSupport support user
+	RoleSupport
 )
 
 func (r Role) String() string {
@@ -37,4 +39,9 @@ func (r Role) String() string {
 // IsAdmin check is user role == Admin
 func (u User) IsAdmin() bool {
 	return u.Role&RoleAdmin != 0
+}
+
+// IsSupport check user is support
+func (u User) IsSupport() bool {
+	return u.Role&RoleAdmin != 0 || u.Role&RoleSupport != 0
 }

@@ -1,0 +1,4 @@
+<h1>Новые тикеты</h1>
+{{ range .tickets }}
+<h2><a href="/support/tickets/{{ .ID }}">{{ .Title }}</a></h2>
+{{ end }}
