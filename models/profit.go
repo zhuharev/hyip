@@ -67,7 +67,7 @@ var Profits profitModel
 func (profitModel) Lasts(userID uint) (profits []Profit, err error) {
 	sql := `SELECT *
   FROM profits
-  WHERE id
+  WHERE object_id
   IN (
     SELECT id
     FROM investments
