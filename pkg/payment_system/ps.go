@@ -15,6 +15,10 @@ import (
 	"github.com/fatih/color"
 )
 
+var (
+	interval = 10 * time.Minute
+)
+
 // PaymentSystem iface of payment system
 type PaymentSystem interface {
 	// PollEnabled if poll disabled, new transactions not be fetched .
@@ -99,6 +103,6 @@ func (pss *PaymentSystems) Run() {
 
 			}
 		}
-		time.Sleep(1 * time.Minute)
+		time.Sleep(interval)
 	}
 }

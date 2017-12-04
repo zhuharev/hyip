@@ -19,6 +19,7 @@ func Create(ctx *context.Context) {
 		currencyID    = ctx.QueryInt("currency")
 		minimalAmount = ctx.QueryFloat64("amount")
 		profit        = ctx.QueryFloat64("profit")
+		name          = ctx.Query("name")
 	)
 
 	curr := models.GetCurrency(uint(currencyID))
@@ -29,6 +30,7 @@ func Create(ctx *context.Context) {
 		MinInvestmentAmount: uint(amount),
 		Currency:            curr.ID,
 		Profit:              profit,
+		Name:                name,
 	}
 
 	err := models.Plans.CreatePlan(plan)

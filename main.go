@@ -11,7 +11,7 @@ import (
 )
 
 // AppVer version of app
-var AppVer = "0.0.1"
+var AppVer = "0.1.1"
 
 func main() {
 

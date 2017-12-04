@@ -8,6 +8,7 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/xml"
+	"log"
 	"time"
 
 	"github.com/go-resty/resty"
@@ -145,6 +146,7 @@ func (a Advcash) hist(lastFetchTime time.Time) (_ []AdvTransaction, err error) {
 
 	err = xml.Unmarshal(bts, &res)
 	if err != nil {
+		log.Printf("%s", bts)
 		return
 	}
 

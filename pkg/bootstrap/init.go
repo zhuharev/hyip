@@ -6,7 +6,6 @@ package bootstrap
 
 import (
 	"github.com/zhuharev/hyip/models"
-	"github.com/zhuharev/hyip/pkg/qiwi"
 	"github.com/zhuharev/hyip/pkg/setting"
 	"github.com/zhuharev/hyip/pkg/traider"
 )
@@ -22,7 +21,7 @@ func GlobalInit(dev bool) (err error) {
 			return err
 		}
 	} else {
-		err = setting.NewContext(setting.CustomLocation("/storage/app.ini"))
+		err = setting.NewContext(setting.CustomLocation("/storage/app.yaml"))
 		if err != nil {
 			return err
 		}
@@ -35,10 +34,10 @@ func GlobalInit(dev bool) (err error) {
 		return err
 	}
 
-	err = qiwi.NewContext()
-	if err != nil {
-		return err
-	}
+	// err = qiwi.NewContext()
+	// if err != nil {
+	// 	return err
+	// }
 
 	err = traider.NewContext()
 	if err != nil {

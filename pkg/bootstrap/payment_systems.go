@@ -26,17 +26,23 @@ func initPaymentSystems() (err error) {
 		return
 	}
 
-	adv := advcash.New(setting.App.PaymentSystems.AdvcashEmail,
-		setting.App.PaymentSystems.AdvcashAPIName,
-		setting.App.PaymentSystems.AdvcashAPIPassword, stor)
+	for _, psSetting := range setting.App.PaymentSystems {
+		if psSetting.Enabled && psSetting.Name == "advcash" {
+			adv := advcash.New(psSetting.WalletID,
+				psSetting.APIName,
+				psSetting.APISecret, stor)
 
-	adv.AmountConverter = exchange.DefaultTypeConverter
+			adv.AmountConverter = exchange.DefaultTypeConverter
 
-	color.Green("[payment systems] inited advcash ps %s %s %s", setting.App.PaymentSystems.AdvcashEmail,
-		setting.App.PaymentSystems.AdvcashAPIName,
-		setting.App.PaymentSystems.AdvcashAPIPassword)
+			color.Green("[payment systems] inited advcash ps %s %s %s", psSetting.WalletID,
+				psSetting.APIName,
+				psSetting.APISecret)
 
-	pss.Add(adv)
+			if psSetting.WalletID != "" {
+				pss.Add(adv)
+			}
+		}
+	}
 
 	go pss.Run()
 

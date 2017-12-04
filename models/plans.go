@@ -20,6 +20,14 @@ func (p plansModel) CreatePlan(plan *Plan) (err error) {
 	return
 }
 
+func (plansModel) Get(id uint) (plan *Plan, err error) {
+	plan = new(Plan)
+	err = NewPlanQuerySet(db).
+		IDEq(id).
+		One(plan)
+	return
+}
+
 // GetPlanByAmount returns plan by provided amount
 func (p plansModel) GetByAmount(amount uint, currency uint) (plan *Plan, err error) {
 	plan = new(Plan)

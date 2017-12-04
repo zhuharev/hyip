@@ -5,10 +5,13 @@
 <h3>Инвестиционные планы</h3>
 
 <ul class="list-group">
-  {{ range .plans}}<li class="list-group-item"># {{ .ID }} от {{ .FormatMinInvestmentAmount }} ({{ .Profit }})</li>{{ end }}
+  {{ range .plans}}<li class="list-group-item">{{ .String }}</li>{{ end }}
 </ul>
 <h4>Добавить план</h4>
 <form class="form" action="/dash/settings/plans/create" method="post">
+  <div class="form-group">
+    <input type="text" class="form-control" name="name" id="" placeholder="Название">
+  </div>
   <div class="form-group">
     <input type="text" class="form-control" name="amount" id="" placeholder="Минимальная сумма">
   </div>

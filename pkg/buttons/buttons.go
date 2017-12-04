@@ -22,6 +22,7 @@ const (
 
 	Deposit               = "deposit"
 	Withdraw              = "withdraw"
+	InvestPlanList        = "inves_plan_list"
 	Reinvest              = "reinvest"
 	HistoryOfTransactions = "history_of_transactions"
 	WithdrawRequest       = "withdraw_request"
@@ -46,7 +47,8 @@ func BankKB(lang string) *tamework.Keyboard {
 	t := i18n.Locale{Lang: lang}.Tr
 	return tamework.NewKeyboard(nil).AddCallbackButton(t(Deposit), Deposit).
 		AddCallbackButton(t(Withdraw), Withdraw).
-		//AddCallbackButton("").
+		AddCallbackButton("").
+		AddCallbackButton(t(InvestPlanList), InvestPlanList).
 		//AddCallbackButton(t(Reinvest), Reinvest).
 		//AddCallbackButton(t(HistoryOfTransactions), HistoryOfTransactions).
 		AddCallbackButton("").
@@ -73,9 +75,9 @@ var (
 func SettingsKB(lang string) *tamework.Keyboard {
 	t := i18n.Locale{Lang: lang}.Tr
 	return tamework.NewKeyboard(nil).AddCallbackButton(t(Language), Language).
-		AddCallbackButton(t(PaymentRequisites), PaymentRequisites) //.
-	//AddCallbackButton("").
-	//AddCallbackButton(t(WebToken), WebToken).
+		AddCallbackButton(t(PaymentRequisites), PaymentRequisites).
+		AddCallbackButton("").
+		AddCallbackButton(t(WebToken), WebToken) //.
 	//AddCallbackButton(t(SetReferrer), SetReferrer)
 }
 

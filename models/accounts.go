@@ -14,3 +14,10 @@ func (accountsModel) List(userID uint) (res []Account, err error) {
 	err = NewAccountQuerySet(db).UserIDEq(userID).All(&res)
 	return
 }
+
+func (accountsModel) Increase(accountID uint, delta uint) error {
+	sql := `UPDATE accounts
+	SET amount = amount + ?
+	WHERE id = ?`
+	return db.Exec(sql, delta, accountID).Error
+}

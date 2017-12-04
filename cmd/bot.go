@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"math"
+	"strconv"
 	"time"
 
 	"github.com/zhuharev/hyip/models"
@@ -70,10 +71,12 @@ func RunBot(ctx *cli.Context) {
 
 	//tgbotapi.APIEndpoint = "http://localhost:4000/bot%s/%s"
 
-	tw, err := tamework.New(setting.App.Token)
+	tw, err := tamework.New(setting.App.Telegram.BotToken)
 	if err != nil {
 		panic(err)
 	}
+
+	setting.App.Telegram.BotUsername = tw.Bot().Self.UserName
 
 	color.Cyan("%s", tgbotapi.APIEndpoint)
 	tw.Bot().Debug = true
@@ -108,6 +111,7 @@ func RunBot(ctx *cli.Context) {
 	tw.CallbackQuery("ps_change_qiwi", routers.ChangeQiwiWalletID)
 	//tw.CallbackQuery(buttons.WeRecommendMethod, routers.Recommend)
 	//tw.CallbackQuery("manual_sum", routers.ManualSum)
+	tw.CallbackQuery(buttons.InvestPlanList, handlePlans)
 
 	// Partners
 	tw.Text(buttons.Partners, handlePartners)
@@ -122,6 +126,7 @@ func RunBot(ctx *cli.Context) {
 	tw.Text(buttons.LanguageButtonsRU[1], handleLanguageChoose)
 	tw.CallbackQuery(buttons.InviteLink, handleRefLink)
 	tw.CallbackQuery(buttons.MyReferrer, handleRef)
+	tw.CallbackQuery(buttons.WebToken, handleWebtoken)
 
 	tw.Run()
 }
@@ -152,6 +157,20 @@ func handleStart(c *context.Context) {
 func handleBank(c *context.Context) {
 	c.Keyboard = buttons.BankKB("ru-RU")
 	c.Markdown(c.Render("my_bank.text", map[string]interface{}{"user": c.User}))
+}
+
+func handlePlans(c *context.Context) {
+	plans, err := models.Plans.All()
+	if err != nil {
+		return
+	}
+	c.Data["plans"] = plans
+
+	for _, v := range plans {
+		c.Data["plan"] = v
+		c.NewKeyboard(nil).AddCallbackButton(c.Tr("buy"), "buy_"+strconv.Itoa(int(v.ID)))
+		c.Markdown(c.Render("my_bank.plan"))
+	}
 }
 
 //
@@ -200,7 +219,8 @@ func handleAboutService(c *context.Context) {
 //
 func handleSetting(c *context.Context) {
 	c.Keyboard = buttons.SettingsKB(c.User.LangString())
-	c.Markdown(c.Tr("settings.text"))
+	c.Data["Login"] = c.User.Name
+	c.Markdown(c.Render("settings.text"))
 }
 
 //
@@ -242,7 +262,7 @@ func handleBitcoinChoose(c *context.Context) {
 
 	msg := fmt.Sprintf("%s: *Ƀ%s*\n\n%s:\n\n`%s`",
 		c.Tr("minimal_amount_for_deposit"),
-		base.FmtAmount(setting.App.Deposit.Lvl1BTCMinSum),
+		base.FmtAmount(10),
 		c.Tr("transfer_amount_to_address"),
 		"todo")
 	//c.Keyboard = buttons.BicoinChooseKB(c.User.LangString())
@@ -285,10 +305,10 @@ func handleRef(c *context.Context) {
 func handleRefLink(c *context.Context) {
 	color.Green("%d", int(c.User.ID)*int(setting.App.SecretNumber))
 	key := base62.Encode(int(c.User.ID) * int(setting.App.SecretNumber))
-	textRU := fmt.Sprintf(`Ваша пригласительная ссылка:
-https://t.me/%s?start=%s`, setting.App.BotName, key)
+	textRU := fmt.Sprintf("Ваша пригласительная ссылка:\n`https://t.me/%s?start=%s`",
+		setting.App.Telegram.BotUsername, key)
 
-	c.Send(textRU)
+	c.Markdown(textRU)
 }
 
 func handleOutgoingTransactionHistory(c *context.Context) {
@@ -327,9 +347,9 @@ func handleCalc(c *context.Context) {
 	}
 	days := com.StrTo(update.Text()).MustInt64()
 
-	simple := fmt.Sprint((float64(sum) * setting.App.Deposit.Lvl1Percent / 100.0) * float64(days))
+	simple := fmt.Sprint((float64(sum) * 10 / 100.0) * float64(days))
 	//SUM = X * (1 + %)n
-	hard := fmt.Sprint(base.FmtAmount(float64(sum) * math.Pow(1.0+setting.App.Deposit.Lvl1Percent/100, float64(days))))
+	hard := fmt.Sprint(base.FmtAmount(float64(sum) * math.Pow(1.0+10/100, float64(days))))
 	text := fmt.Sprintf("Вы заработаете: %s\n\nС реинвестициями: %s", simple, hard)
 	c.Send(text)
 
@@ -347,4 +367,13 @@ func handleSupport(update tgbotapi.Update) {
 	if err != nil {
 		log.Println(err)
 	}
+}
+
+func handleWebtoken(c *context.Context) {
+	newPass, err := models.Users.SetRandomPassword(c.User.ID)
+	if err != nil {
+		color.Red("Err update password: %s", err)
+		return
+	}
+	c.Markdown(c.Tr("your_new_password") + ": `" + newPass + "`")
 }

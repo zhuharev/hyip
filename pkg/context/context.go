@@ -30,7 +30,7 @@ func Contexter() tamework.Handler {
 
 		user, err := models.Users.GetByTelegramID(c.UserID)
 		if err != nil {
-			if err == gorm.ErrRecordNotFound {
+			if err == gorm.ErrRecordNotFound || user.ID == 0 {
 				// create new user
 				// send registration message
 
@@ -40,6 +40,7 @@ func Contexter() tamework.Handler {
 
 				user := new(models.User)
 				user.Ref1 = uint(referID)
+				user.Name = ctx.Update().Username()
 
 				err = models.Users.Create(user)
 				if err != nil {

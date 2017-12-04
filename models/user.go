@@ -51,7 +51,7 @@ type User struct {
 
 	Role Role
 
-	Name           string
+	Name           string `gorm:"unique_index"`
 	HashedPassword []byte
 }
 

@@ -1,4 +1,5 @@
 conf/app.ini
+conf/app.yaml
 .trinity
 data/*
 hyip

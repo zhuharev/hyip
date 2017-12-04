@@ -1,10 +1,13 @@
 package cmd
 
 import (
+	"html/template"
 	"log"
 	"path/filepath"
 
+	"github.com/zhuharev/hyip/models"
 	"github.com/zhuharev/hyip/pkg/bootstrap"
+	"github.com/zhuharev/hyip/pkg/setting"
 	"github.com/zhuharev/hyip/web/context"
 
 	"github.com/go-macaron/i18n"
@@ -33,6 +36,13 @@ func newMacaron() *macaron.Macaron {
 	m := macaron.Classic()
 	m.Use(macaron.Renderer(macaron.RenderOptions{
 		Layout: "layout",
+		Funcs: []template.FuncMap{
+			{
+				"printCurr": func(curr uint, amount uint) template.HTML {
+					return template.HTML(models.Currencies.FormatAmount(curr, amount))
+				},
+			},
+		},
 	}))
 
 	// sessions, auth, cookies
@@ -46,9 +56,9 @@ func newMacaron() *macaron.Macaron {
 	}))
 
 	m.Use(i18n.I18n(i18n.Options{
-		Langs:     []string{"en-US", "ru-RU"},
-		Names:     []string{"English", "Русский"},
-		Directory: "conf/locals",
+		Langs:     setting.App.Languages.Codes(),
+		Names:     setting.App.Languages.Names(),
+		Directory: "conf/locales",
 	}))
 
 	m.Use(context.Contexter())

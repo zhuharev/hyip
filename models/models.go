@@ -51,6 +51,7 @@ func NewContext() (err error) {
 		&store.Transaction{},
 		&Ticket{},
 		&Message{},
+		&Profit{},
 	)
 
 	// key value

@@ -166,11 +166,6 @@
 			"Rev": "cbaa3f339774fb4f4932f9652b20afed910b34ba"
 		},
 		{
-			"ImportPath": "github.com/zhuharev/qiwi",
-			"Comment": "v0.0.5-1-g8ae706e",
-			"Rev": "8ae706e14a322c18b3549b0aa6e9c7d91fd59565"
-		},
-		{
 			"ImportPath": "github.com/zhuharev/qiwi-admin/models",
 			"Comment": "v0.0.6-1-g85e0521",
 			"Rev": "85e05218fe212ce2aaba7b83fc315636a864f435"
@@ -182,8 +177,8 @@
 		},
 		{
 			"ImportPath": "github.com/zhuharev/tamework",
-			"Comment": "v0.0.1-1-gbca8824",
-			"Rev": "bca8824ee109ae2b0ab0514e84fd05eeaea7dbb1"
+			"Comment": "v0.1.0",
+			"Rev": "ef9bd5e9f48f66f92903224dfde05a32d3d2b039"
 		},
 		{
 			"ImportPath": "golang.org/x/crypto/bcrypt",
@@ -226,6 +221,10 @@
 			"ImportPath": "gopkg.in/macaron.v1",
 			"Comment": "v1.2.3",
 			"Rev": "534b5803c7c0bfb3a59632359a94bc761d393d4c"
+		},
+		{
+			"ImportPath": "gopkg.in/yaml.v2",
+			"Rev": "eb3733d160e74a9c7e442f435eb3bea458e1d19f"
 		}
 	]
 }

@@ -30,3 +30,25 @@
     {{ end }}
   </tbody>
 </table>
+
+<h2>Прибыль</h2>
+<table class="table  table-striped table-bordered" style="width: 100%;">
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Дата</th>
+      <th>Сумма</th>
+      <th>Валюта</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ range .profits }}
+    <tr>
+      <td>{{ .ID }}</td>
+      <td>{{ .CreatedAt.Format "02.01.2006" }}</td>
+      <td>{{ .Amount }}</td>
+      <td>{{ printCurr .Currency .Amount }}</td>
+    </tr>
+    {{ end }}
+  </tbody>
+</table>

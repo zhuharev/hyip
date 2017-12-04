@@ -5,7 +5,6 @@
 package auth
 
 import (
-	"github.com/fatih/color"
 	"golang.org/x/crypto/bcrypt"
 
 	"github.com/zhuharev/hyip/models"
@@ -43,17 +42,6 @@ func Reg(ctx *context.Context) {
 			ctx.Flash.Error("Ошибка сессии")
 			ctx.Redirect("/reg")
 			return
-		}
-
-		for _, curr := range models.Currencies {
-			account := &models.Account{
-				CurrencyID: curr.ID,
-				UserID:     user.ID,
-			}
-			err = account.Create(models.DB())
-			if err != nil {
-				color.Red("[reg] Ошибка при создании счёта для %s: %s", curr.Symbol, err)
-			}
 		}
 
 		ctx.Redirect("/dash")

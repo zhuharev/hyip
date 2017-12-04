@@ -7,6 +7,7 @@ package context
 import (
 	"github.com/fatih/color"
 	"github.com/zhuharev/hyip/models"
+	"github.com/zhuharev/hyip/pkg/setting"
 
 	"github.com/go-macaron/session"
 	macaron "gopkg.in/macaron.v1"
@@ -46,6 +47,8 @@ func Contexter() macaron.Handler {
 				c.Data["User"] = user
 			}
 		}
+
+		ctx.Data["socials"] = setting.App.Socials
 
 		c.Map(ctx)
 	}

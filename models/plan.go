@@ -5,6 +5,7 @@
 package models
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/jinzhu/gorm"
@@ -18,10 +19,18 @@ import (
 type Plan struct {
 	gorm.Model
 
+	Name                string
 	Currency            uint
 	MinInvestmentAmount uint
 	Duration            time.Duration
 	Profit              float64
+}
+
+func (p Plan) String() string {
+	if p.Name != "" {
+		return p.Name
+	}
+	return fmt.Sprintf("#%d от %s (%f)", p.ID, p.FormatMinInvestmentAmount(), p.Profit)
 }
 
 // FormatMinInvestmentAmount formats min investment amount

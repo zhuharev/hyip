@@ -22,5 +22,11 @@ func Contracts(ctx *context.Context) {
 	}
 	ctx.Data["investments"] = investments
 
+	profits, err := models.Profits.Lasts(ctx.User.ID)
+	if ctx.HasError(err) {
+		return
+	}
+	ctx.Data["profits"] = profits
+
 	ctx.HTML(200, "dash/contracts")
 }

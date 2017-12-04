@@ -8,6 +8,9 @@ import (
 	"fmt"
 	"time"
 
+	"golang.org/x/crypto/bcrypt"
+
+	"github.com/Unknwon/com"
 	"github.com/jinzhu/gorm"
 )
 
@@ -64,6 +67,18 @@ func (u usersModel) Create(user *User) (err error) {
 		return err
 	}
 
+	for _, curr := range Currencies {
+		account := &Account{
+			CurrencyID: curr.ID,
+			UserID:     user.ID,
+		}
+		err = account.Create(db)
+		if err != nil {
+			err = fmt.Errorf("[reg] Ошибка при создании счёта для %s: %s", curr.Symbol, err)
+			return
+		}
+	}
+
 	if user.ID == 1 {
 		user.Role = RoleAdmin
 		err = user.Update(db, UserDBSchema.Role)
@@ -75,6 +90,22 @@ func (u usersModel) Create(user *User) (err error) {
 	var us = UserSetting{UserID: user.ID}
 	err = stormDB.Save(&us)
 
+	return
+}
+
+// SetRandomPassword generate new password for user
+func (u usersModel) SetRandomPassword(userID uint) (newPass string, err error) {
+	pass := com.RandomCreateBytes(5)
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(pass), bcrypt.DefaultCost)
+	if err != nil {
+		return
+	}
+
+	err = db.Exec("update users set hashed_password = ? where id = ?", hashedPassword, userID).Error
+	if err != nil {
+		return
+	}
+	newPass = string(pass)
 	return
 }
 
