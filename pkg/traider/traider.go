@@ -62,7 +62,7 @@ func trade() (err error) {
 				if days == 0 || invest.LastPayment.IsZero() {
 					days = 1
 				}
-				profit := uint(float64(invest.Amount*days) * plan.Profit)
+				profit := uint(float64(invest.Amount*days) * plan.Profit / 100.0)
 				color.Green("[traider] days: %d, invested:%d,plan_profit:%f profit: %d",
 					days, invest.Amount, plan.Profit, profit)
 
