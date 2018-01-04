@@ -27,11 +27,12 @@ var (
 
 		Web struct {
 			Port int
+			Base string
 		}
 
 		Languages Languages
 
-		PaymentSystems PaymentSystems `yaml:"payment_systems"`
+		//PaymentSystems PaymentSystems `yaml:"payment_systems"`
 
 		Socials []struct {
 			Link  string

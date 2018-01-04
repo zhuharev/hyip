@@ -17,4 +17,7 @@ type Account struct {
 	UserID     uint `gorm:"unique_index:curr_user_idx"`
 
 	Amount uint
+
+	WithdrawWalletID string
+	RefillWalletID   string
 }

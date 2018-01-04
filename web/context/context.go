@@ -78,18 +78,16 @@ func (ctx *Context) HTML(code int, tmplName string, other ...interface{}) {
 // HasError check passed err and write resposne if err!=nil
 func (ctx *Context) HasError(err error, redirects ...string) bool {
 	location := "/"
+	if ctx.User != nil {
+		location = "/dash"
+	}
 	if len(redirects) > 0 {
 		location = redirects[0]
 	}
 	if err != nil {
 		color.Red("controller error %s", err)
 		ctx.Flash.Error(err.Error())
-		if ctx.User != nil {
-			ctx.Redirect(location)
-		} else {
-			ctx.Redirect(location)
-		}
-
+		ctx.Redirect(location)
 		//ctx.Error(200, err.Error())
 		return true
 	}

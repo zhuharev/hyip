@@ -3,9 +3,10 @@ package routers
 import (
 	"fmt"
 	"log"
+
 	"github.com/zhuharev/hyip/models"
 	"github.com/zhuharev/hyip/pkg/context"
-	"github.com/zhuharev/hyip/pkg/qiwi"
+	"github.com/zhuharev/hyip/pkg/payment_system/qiwi"
 
 	"github.com/zhuharev/boltutils"
 )

@@ -7,6 +7,7 @@ package cmd
 import (
 	"github.com/zhuharev/hyip/models"
 	"github.com/zhuharev/hyip/web/context"
+	paymentSystem "github.com/zhuharev/hyip/web/routers/admin/payment_system"
 	"github.com/zhuharev/hyip/web/routers/auth"
 	"github.com/zhuharev/hyip/web/routers/dash"
 	"github.com/zhuharev/hyip/web/routers/pages"
@@ -37,6 +38,8 @@ func registreRoutes(m *macaron.Macaron) {
 		m.Post("/settings", dash.UpdateSettings)
 		m.Post("/settings/plans/create", plans.Create)
 		m.Post("/settings/advcash", dash.MakeSaveField("Advcash"))
+
+		m.Get("/invest", dash.ChoosePaymentSystem)
 	}, context.Toggle(&context.ToggleOptions{SignInRequired: true}))
 
 	m.Get("/support", support.Index)
@@ -47,6 +50,15 @@ func registreRoutes(m *macaron.Macaron) {
 	m.Any("/login", context.Toggle(&context.ToggleOptions{SignOutRequired: true}), auth.Login)
 	m.Any("/reg", context.Toggle(&context.ToggleOptions{SignOutRequired: true}), auth.Reg)
 	m.Get("/logout", context.Toggle(&context.ToggleOptions{SignInRequired: true}), auth.Logout)
+
+	m.Get("/r/:hash", context.Toggle(&context.ToggleOptions{SignOutRequired: true}), auth.Invite)
+
+	m.Group("/admin", func() {
+		m.Group("/ps", func() {
+			m.Get("/", paymentSystem.List)
+			m.Post("/create", binding.Bind(models.PaymentSystem{}), paymentSystem.Create)
+		})
+	}, context.Toggle(&context.ToggleOptions{SignInRequired: true, AdminRequired: true}))
 
 	m.Post("/external/webhooks/qiwi", binding.Bind(models.QiwiTxn{}), webhooks.Qiwi)
 }

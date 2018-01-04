@@ -2,12 +2,11 @@ package context
 
 import (
 	"github.com/zhuharev/hyip/models"
+	"github.com/zhuharev/hyip/pkg/base"
 	"github.com/zhuharev/hyip/pkg/buttons"
-	"github.com/zhuharev/hyip/pkg/setting"
 
 	"github.com/fatih/color"
 	"github.com/jinzhu/gorm"
-	base62 "github.com/pilu/go-base62"
 	"github.com/zhuharev/tamework"
 
 	"github.com/Unknwon/i18n"
@@ -36,9 +35,9 @@ func Contexter() tamework.Handler {
 
 				color.Green(c.Text)
 
-				referID := base62.Decode(c.Text) / setting.App.SecretNumber
+				referID := uint(base.DecodeHash(c.Text))
 
-				user := new(models.User)
+				user = new(models.User)
 				user.Ref1 = uint(referID)
 				user.Name = ctx.Update().Username()
 

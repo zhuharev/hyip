@@ -4,16 +4,7 @@
 
 package bootstrap
 
-import (
-	"github.com/fatih/color"
-	"github.com/zhuharev/hyip/models"
-
-	"github.com/zhuharev/hyip/pkg/setting"
-
-	"github.com/zhuharev/hyip/pkg/exchange"
-	ps "github.com/zhuharev/hyip/pkg/payment_system"
-	"github.com/zhuharev/hyip/pkg/payment_system/adapters/advcash"
-)
+import ps "github.com/zhuharev/hyip/pkg/payment_system"
 
 func initPaymentSystems() (err error) {
 	pss, err := ps.New()
@@ -21,28 +12,28 @@ func initPaymentSystems() (err error) {
 		return
 	}
 
-	stor, err := models.NewPaymentSystemStore(models.Advcash)
-	if err != nil {
-		return
-	}
+	// stor, err := models.NewPaymentSystemStore(models.Advcash)
+	// if err != nil {
+	// 	return
+	// }
 
-	for _, psSetting := range setting.App.PaymentSystems {
-		if psSetting.Enabled && psSetting.Name == "advcash" {
-			adv := advcash.New(psSetting.WalletID,
-				psSetting.APIName,
-				psSetting.APISecret, stor)
-
-			adv.AmountConverter = exchange.DefaultTypeConverter
-
-			color.Green("[payment systems] inited advcash ps %s %s %s", psSetting.WalletID,
-				psSetting.APIName,
-				psSetting.APISecret)
-
-			if psSetting.WalletID != "" {
-				pss.Add(adv)
-			}
-		}
-	}
+	// for _, psSetting := range setting.App.PaymentSystems {
+	// 	if psSetting.Enabled && psSetting.Name == "advcash" {
+	// 		adv := advcash.New(psSetting.WalletID,
+	// 			psSetting.APIName,
+	// 			psSetting.APISecret, stor)
+	//
+	// 		adv.AmountConverter = exchange.DefaultTypeConverter
+	//
+	// 		color.Green("[payment systems] inited advcash ps %s %s %s", psSetting.WalletID,
+	// 			psSetting.APIName,
+	// 			psSetting.APISecret)
+	//
+	// 		if psSetting.WalletID != "" {
+	// 			pss.Add(adv)
+	// 		}
+	// 	}
+	// }
 
 	go pss.Run()
 

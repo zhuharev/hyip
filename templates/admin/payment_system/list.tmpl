@@ -1,0 +1,35 @@
+<h1>Платёжные системы</h1>
+<h2>Добавить платёжную систему</h2>
+<form action="/admin/ps/create" method="post">
+  <div class="form-group">
+    <select class="form-control" name="ps_type" id="">
+      <option value="qiwi">Киви</option>
+      <option value="coinbase">Coinbase (BTC)</option>
+      <option value="advcash">Advcash</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="text" name="key" id="" placeholder="Ключ">
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="text" name="secret" id="" placeholder="Секретный код (если есть)">
+  </div>
+  <div class="form-group">
+    <label for="account_id">ID кошелька (номер qiwi)</label>
+    <input class="form-control" type="text" name="account_id" id="account_id" placeholder="+7999">
+  </div>
+  <div class="form-group">
+    <label for="direction">Тип платежей</label>
+    <select class="form-control" name="direction" id="direction">
+      <option value="in">Входящие</option>
+      <option value="out">Исходящие</option>
+      <option value="bi">Любые</option>
+    </select>
+  </div>
+  <button class="btn btn-primary">Добавить</button>
+</form>
+
+<h2>Список платёжных систем</h2>
+{{ range .list }}
+{{ .ID }} {{ . }} <br>
+{{ end }}

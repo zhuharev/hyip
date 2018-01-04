@@ -19,16 +19,12 @@ import (
 	"github.com/Unknwon/i18n"
 	"github.com/fatih/color"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
-	base62 "github.com/pilu/go-base62"
 	"github.com/urfave/cli"
 	"github.com/zhuharev/tamework"
 )
 
 var (
 	bot *tgbotapi.BotAPI
-
-	secretAdd        = 123123
-	secretMultiplyer = 3
 
 	states = map[int64]string{}
 )
@@ -77,6 +73,8 @@ func RunBot(ctx *cli.Context) {
 	}
 
 	setting.App.Telegram.BotUsername = tw.Bot().Self.UserName
+
+	log.Printf("[info] Run bot %s", setting.App.Telegram.BotUsername)
 
 	color.Cyan("%s", tgbotapi.APIEndpoint)
 	tw.Bot().Debug = true
@@ -304,9 +302,8 @@ func handleRef(c *context.Context) {
 
 func handleRefLink(c *context.Context) {
 	color.Green("%d", int(c.User.ID)*int(setting.App.SecretNumber))
-	key := base62.Encode(int(c.User.ID) * int(setting.App.SecretNumber))
 	textRU := fmt.Sprintf("Ваша пригласительная ссылка:\n`https://t.me/%s?start=%s`",
-		setting.App.Telegram.BotUsername, key)
+		setting.App.Telegram.BotUsername, base.HashNumber(int(c.User.ID)))
 
 	c.Markdown(textRU)
 }

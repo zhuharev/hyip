@@ -1,3 +1,17 @@
+<h2>Инвестировать</h2>
+<h3>Выберите валюту инвестиции</h3>
+
+<form class="form" action="/dash/invest">
+  <div class="form-group">
+    <select class="form-control" name="currency_id" id="">
+      {{ range .accounts}}
+      <option value="{{ .ID }}">{{ $.i18n.Tr ($.currencies.Message .CurrencyID) }}</option>{{ end }}
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Инвестировать</button>
+</form>
+
 <h2>Advcash</h2>
 <p>Переведите сумму инвестиции на наш e-mail: <code>kirill@zhuharev.ru</code></p>
 <div class="alert alert-info">Обратите внимание, что перед инвестированием вы должны установить свой e-mail, который используете в Advcash в <b><a href="/dash/settings#advcash">настройках</a></b>, что бы мы могли определить, что средства поступили от вас</div>

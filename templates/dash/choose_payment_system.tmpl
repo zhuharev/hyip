@@ -1,0 +1,7 @@
+{{ range .payment_systems }}
+
+<h2>{{ .PSTypeName }}</h2>
+
+Для пополнения, переведите деньги на кошелёк: <code>{{ .RefillAddress $.accounts }}</code>
+
+{{ end }}

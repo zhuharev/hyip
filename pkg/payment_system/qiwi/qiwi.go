@@ -7,6 +7,8 @@ package qiwi
 import (
 	"fmt"
 	"net/url"
+
+	"github.com/zhuharev/hyip/web/context"
 )
 
 var (
@@ -75,6 +77,10 @@ var (
 // 	UserID        uint
 // 	TransactionID int64
 // }
+
+func HandleWebHook(c *context.Context) {
+
+}
 
 func MakePaymentURL(walletID string, userID uint) string {
 	var params = url.Values{

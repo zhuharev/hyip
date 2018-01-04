@@ -18,15 +18,6 @@ import (
 type User struct {
 	gorm.Model
 
-	BalanceUSD float64
-	BalanceBTC float64
-
-	DepositUSD float64
-	DepositBTC float64
-
-	ReinvestUSD float64
-	ReinvestBTC float64
-
 	EarnUSD             float64
 	EarnBTC             float64
 	EarnWithPartnersUSD float64

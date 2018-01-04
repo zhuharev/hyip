@@ -38,12 +38,12 @@ func Toggle(options *ToggleOptions) macaron.Handler {
 			}
 		}
 
-		// if options.AdminRequired {
-		// 	if !c.User.IsAdmin {
-		// 		c.Error(403)
-		// 		return
-		// 	}
-		// 	c.Data["PageIsAdmin"] = true
-		// }
+		if options.AdminRequired {
+			if !c.User.IsAdmin() {
+				c.Error(403)
+				return
+			}
+			c.Data["PageIsAdmin"] = true
+		}
 	}
 }

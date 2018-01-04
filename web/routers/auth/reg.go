@@ -8,6 +8,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 
 	"github.com/zhuharev/hyip/models"
+	"github.com/zhuharev/hyip/pkg/base"
 	"github.com/zhuharev/hyip/web/context"
 )
 
@@ -31,6 +32,13 @@ func Reg(ctx *context.Context) {
 			return
 		}
 		user.HashedPassword = hashedPassword
+
+		refHash := ctx.GetCookie(refCookieName)
+		if refHash != "" {
+			refID := base.DecodeHash(refHash)
+			user.Ref1 = uint(refID)
+		}
+
 		err = models.Users.Create(user)
 		if err != nil {
 			ctx.Flash.Error("Ошибка создания пользователя")

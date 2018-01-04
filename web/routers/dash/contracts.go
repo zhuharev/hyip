@@ -6,13 +6,12 @@ package dash
 
 import (
 	"github.com/zhuharev/hyip/models"
-	"github.com/zhuharev/hyip/pkg/qiwi"
+	"github.com/zhuharev/hyip/pkg/payment_system/qiwi"
 	"github.com/zhuharev/hyip/web/context"
 )
 
 // Contracts is dash.partners controller
 func Contracts(ctx *context.Context) {
-	_ = models.User{}
 	paymentURL := qiwi.MakePaymentURL("+79997651151", ctx.User.ID)
 	ctx.Data["paymentURL"] = paymentURL
 
@@ -27,6 +26,13 @@ func Contracts(ctx *context.Context) {
 		return
 	}
 	ctx.Data["profits"] = profits
+
+	accounts, err := models.Accounts.List(ctx.User.ID)
+	if ctx.HasError(err) {
+		return
+	}
+	ctx.Data["accounts"] = accounts
+	ctx.Data["currencies"] = models.Currencies
 
 	ctx.HTML(200, "dash/contracts")
 }

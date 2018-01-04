@@ -52,6 +52,7 @@ func NewContext() (err error) {
 		&Ticket{},
 		&Message{},
 		&Profit{},
+		&PaymentSystem{},
 	)
 
 	// key value
